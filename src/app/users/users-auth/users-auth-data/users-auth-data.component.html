@@ -1,0 +1,61 @@
+<!--<table class="table">-->
+  <!--<thead><tr><th>手机号</th><th>注册手机</th><th>注册地点</th><th>注册平台</th><th>认证状态</th><th>账户余额</th><th>退款状态</th><th>操作</th></tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr>-->
+    <!--<td>18800176960</td>-->
+    <!--<td>2016-10-16 22:30:13</td>-->
+    <!--<td>北京市</td>-->
+    <!--<td>IOS</td>-->
+    <!--<td class="orange">待审核</td>-->
+    <!--<td>0</td>-->
+    <!--<td>-</td>-->
+    <!--<td  class="blue"><a><span class="blue">认证</span></a>&nbsp;|&nbsp;<a><span class="blue">优惠券</span></a>&nbsp;|&nbsp;<a><span class="blue">余额退款</span></a></td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>手机号</th>
+          <th>注册时间</th>
+          <th>注册地点</th>
+          <th>上次登录时间</th>
+          <th>上次登录点</th>
+          <th>账户余额</th>
+          <th>注册平台</th>
+          <th>认证状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of authUserList">
+          <td>{{user.mobile}}</td>
+          <td>{{user.registerTime}}</td>
+          <td>{{user.registerAddress}}</td>
+          <td>{{user.lastLoginTime}}</td>
+          <td>{{user.lastLoginAddress}}</td>
+          <td>{{user.amount}}</td>
+          <td>{{user.source}}</td>
+          <td>
+            <span *ngIf="user.status==200">未提交</span>
+            <span *ngIf="user.status==201">审核中</span>
+            <span *ngIf="user.status==202" class="red">认证失败</span>
+            <span *ngIf="user.status==203" class="red">认证过期</span>
+            <span *ngIf="user.status==299" class="green">认证成功</span>
+          </td>
+          <td>
+            <a href="###">查看</a>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <div id="pagination"></div>
+  </div>
+</div>
+

@@ -1,0 +1,7 @@
+a {color: #0099ff;}
+.station-container tr {padding: 5px 0;}
+.form-group .caret,.glyphicon-th-list {color: #0099ff}
+.search-button,.add-button {background-color: #0099ff;border:none}
+.station-top {background-color: #f2f2f2;padding: 10px}
+.add-button{position: absolute;right: 80px}
+.search-button{margin-left: 40px;}

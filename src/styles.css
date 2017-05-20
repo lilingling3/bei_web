@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}
+table {border-collapse: collapse;border-spacing: 0;}
+th { font-weight:normal;}
+body{margin:0 auto; font:14px "Microsoft YaHei"; color:#000; font-family:"Microsoft YaHei";}
+input { font:14px "Microsoft YaHei"; text-indent:4px;*text-indent:0px; font-family:"Microsoft YaHei"; color:#999;outline: none;}
+textarea,input{word-wrap:break-word; word-break:break-all; padding:0px;}
+
+ul,li{list-style-type:none;}
+
+a {outline:none; star:expression(this.onFocus=this.blur());color:#888;text-decoration:none;}
+a:hover{color:#e74c3c; text-decoration:none;}
+a:active{color:#888;}
+
+img,form,fieldset {border:0 none;}
+
+table th { font-weight: bold;}
+.blue {  color: #0099ff !important; }
+.orange {  color: #ff6600 !important;}
+.table>tbody>tr>td{padding: 10px}
+.table{margin-bottom: 0}

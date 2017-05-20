@@ -1,0 +1,87 @@
+<div class="station-top">
+  <form class="form-inline" role="form">
+
+  <div class="form-group">
+    <!-- 还车类型-->
+    <select name="backType" id="backType">
+      <option value="0">类型</option>
+      <option value="600">原地还车</option>
+      <option value="601">异地还车</option>
+    </select>
+  </div>
+
+  <!-- 二级联动  -->
+  <div class="form-group">
+    <select name="provice" id="provice">
+      <option value="-1">请选择省</option>
+    </select>
+    <select name="city" id="city">
+      <option value="-1">请选择市</option>
+    </select>
+    <select name="area" id="area">
+      <option value="-1">请选择区</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input type="text" placeholder="请输入租赁点">
+  </div>
+
+  <button type="button" class="btn btn-info search-button" id="searchStation">
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+  </button>
+  <button type="button" class="btn btn-info add-button" id="addStation">
+    <span class="	glyphicon glyphicon-plus" aria-hidden="true"></span>添加租赁点
+  </button>
+
+</form>
+</div>
+
+<div class="row station-container">
+
+  <div class="col-sm-12">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+        <th>租赁点名称</th>
+        <th>类型</th>
+        <th>租赁点地区</th>
+        <th>地址</th>
+        <th>车位</th>
+        <th>联系电话</th>
+        <th>上线状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let station of stationList">
+        <td>{{station.name}}</td>
+        <td>
+          <span *ngIf="station.backType==600">原地还车</span>
+          <span *ngIf="station.backType==601">异地还车</span>
+        </td>
+        <td>{{station.city}}</td>
+        <td>{{station.street}}</td>
+        <td>{{station.parkingSpaceCount}}</td>
+        <td>4001118220</td>
+        <td>
+          <span *ngIf="station.onLine==801">已上线</span>
+          <span *ngIf="station.onLine==800">下线中</span>
+        </td>
+        <td>
+          <a  [routerLink]="['/workentry/stations/manage/show',station.rentalStationID]">查看</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="station-pagination">
+  <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
+              firstText="{{'首页' }}" lastText="{{'尾页'}}"
+              previousText="{{'上一页'}}" nextText="{{'下一页'}}"
+              [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
+              (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+</div>

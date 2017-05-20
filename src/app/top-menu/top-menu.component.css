@@ -1,0 +1,24 @@
+.text-right { text-align: right }
+.bggray { background-color: #666; }
+.top-nav a { color: white;border-radius: 0px; }
+.top-nav a:visited { background: #0099ff; }
+
+.top-nav a:hover { background: #0099ff; }
+.top-nav a:active { background: #0099ff; }
+.top-nav .active a { background: #0099ff; }
+.top-nav.nav>li { position: inherit; }
+.top-nav1 { padding: 10px 30px 10px 0px;}
+.line {    display: inline-block;  width: 1px;  height: 14px;  background-color: #666;  margin: 0px 5px;  position: relative;  top: 2px; }
+.nav-second {  background: #0099ff;  }
+.tringle { display: none;width: 0px; height: 0px;border-top:6px solid transparent;  border-bottom: 6px solid transparent;  border-left: 6px solid white; margin-right: 3px; }
+.nav-second li.active .tringle { display: inline-block; }
+.myTabSecond { position: absolute; width: 100%;  left: 0px; }
+.myTabSecond a:visited { background-color:#0099ff;  }
+.myTabSecond a:hover { background-color:#0099ff;  }
+.top-nav a:active { background-color:#0099ff;  }
+.myTabSecond,.nav-second { display: none; }
+.active .myTabSecond,.myTabSecond .active .nav-second { display: block; }
+.nav-pills>li+li { margin-left: 0px; }
+.bread { margin: 50px 10px 0px; }
+.bread-mt { margin-top: 10px; }
+.bread .f { color: #666; }

@@ -1,0 +1,166 @@
+<div class="nav_menu">
+    <nav>
+        <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+        <div class="nav text-right top-nav1">
+            {{user.name}}<span class="line"></span>{{user.mobile}}<span class="line"></span>管理员<span class="line"></span><span (click)="logout()">退出</span>
+                <span class=" fa fa-angle-down"></span>
+
+        </div>
+
+      <ul class="nav nav-pills bggray top-nav">
+        <!--<li >-->
+          <!--<a id="home" routerLink="index">首页</a>-->
+        <!--</li>-->
+
+        <li class="f-nav" *ngFor="let navList of navLists">
+          <a  class="my-a" href="#{{navList.level}}" data-toggle="tab">{{navList.name}}</a>
+          <div class="myTabSecond">
+            <div class="tab-pane " id="{{navList.level}}">
+              <ul class="nav nav-pills  nav-second top-nav">
+                <li  *ngFor="let navSecond of navList.sub" class="test">
+                  <!-- routerLink="users/auth/page/1"  -->
+                  <a  class="my-a" routerLink="{{navSecond.url}}">
+                    <span class="tringle"></span>{{navSecond.name}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!--<li class="f-nav">-->
+          <!--<a class="my-a"  href="#user-manage" data-toggle="tab">用户管理</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="user-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a class="my-a" routerLink="users/auth/page/1"><span class="tringle"></span>注册用户</a></li>-->
+                <!--<li><a class="my-a" routerLink="users/black"><span class="tringle"></span>黑名单</a></li>-->
+                <!--<li><a class="my-a" href="#"><span class="tringle"></span>认证会员</a></li>-->
+                <!--<li><a class="my-a" href="#"><span class="tringle"></span>拉黑申诉</a></li>-->
+                <!--<li><a class="my-a" href="#"><span class="tringle"></span>权限设置</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav">-->
+          <!--<a href="#order-manage" data-toggle="tab">订单管理</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="order-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav">-->
+          <!--<a href="#station-manage" data-toggle="tab">站点管理</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="station-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a routerLink="stations/map"><span class="tringle"></span>地图map</a></li>-->
+               <!--&lt;!&ndash; <li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>&ndash;&gt;-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav">-->
+          <!--<a href="#car-manage" data-toggle="tab">车辆管理</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="car-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav"><a href="#price-manage" data-toggle="tab">定价与优惠</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="price-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav"><a href="#message-manage" data-toggle="tab">消息管理</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="message-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav"><a href="#activity-manage" data-toggle="tab">线上活动</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="activity-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav"><a href="#finance-manage" data-toggle="tab">财务管理</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="finance-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav"><a href="#data-manage" data-toggle="tab">数据统计</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="data-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a routerLink="data/operate"><span class="tringle"></span>运营数据</a></li>-->
+              <!--&lt;!&ndash;  <li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>&ndash;&gt;-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="f-nav"><a href="#system-manage" data-toggle="tab">系统设置</a>-->
+          <!--<div class="myTabSecond">-->
+            <!--<div class="tab-pane " id="system-manage">-->
+              <!--<ul class="nav nav-pills  nav-second top-nav">-->
+                <!--<li  class=""><a ><span class="tringle"></span>租车订单</a></li>-->
+                <!--<li><a ><span class="tringle"></span>充值订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>缴费订单</a></li>-->
+                <!--<li><a href="#"><span class="tringle"></span>租车押金</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+
+      </ul>
+
+      <div class="bread">
+        <span class="f">系统设置/</span>
+      </div>
+
+    </nav>
+</div>

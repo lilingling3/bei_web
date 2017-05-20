@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="newItem">
+      <input type="text" id="newSn" placeholder="输入sn">
+      <input type="text" id="newName" placeholder="输入name">
+      <input type="text" id="newValue" placeholder="输入value">
+      <input type="text" id="newEnabled" placeholder="输入enabled">
+      <input type="text" id="newParentId" placeholder="输入parentId">
+      <button (click)="newItem()" class="btn btn-default">新建</button>
+    </div>
+
+    <div class="edit-page">
+        <input type="text" id="editSn" placeholder="输入sn">
+        <input type="text" id="editName" placeholder="输入name">
+        <input type="text" id="editValue" placeholder="输入value">
+        <input type="text" id="editEnabled" placeholder="输入enabled">
+        <input type="text" id="editParentId" placeholder="输入parentId">
+        <button (click)="editSave()" class="btn btn-default" data-id="" id="saveBtn">保存</button>
+    </div>
+
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>sn</th>
+        <th>name</th>
+        <th>value</th>
+        <th>enabled</th>
+        <th>parentId</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let workBook of workBookList">
+        <td>{{workBook.id}}</td>
+        <td>{{workBook.sn}}</td>
+        <td>{{workBook.name}}</td>
+        <td>{{workBook.value}}</td>
+        <td>{{workBook.enabled}}</td>
+        <td>{{workBook.parentId}}</td>
+        <td>
+          <a href="javascript:void(0);"   name="{{workBook.id}}" (click)="editItem($event)">修改</a>
+          <a href="javascript:void(0);"   name="{{workBook.id}}" (click)="delItem($event)">删除</a>
+          <!--<a href="###">新建</a>-->
+        </td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+
+<div class="station-pagination">
+  <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
+              firstText="{{'首页' }}" lastText="{{'尾页'}}"
+              previousText="{{'上一页'}}" nextText="{{'下一页'}}"
+              [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
+              (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+</div>

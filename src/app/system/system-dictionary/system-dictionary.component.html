@@ -1,23 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
-    <!--<div class="newItem">-->
-      <!--<input type="text" id="newSn" placeholder="输入sn">-->
-      <!--<input type="text" id="newName" placeholder="输入name">-->
-      <!--<input type="text" id="newValue" placeholder="输入value">-->
-      <!--<input type="text" id="newEnabled" placeholder="输入enabled">-->
-      <!--<input type="text" id="newParentId" placeholder="输入parentId">-->
-      <!--<button (click)="newItem()" class="btn btn-default">新建</button>-->
-    <!--</div>-->
-        <button class="btn btn-default" (click)="goToEdit()">添加字典管理</button>
 
-    <!--<div class="edit-page">-->
-        <!--<input type="text" id="editSn" placeholder="输入sn">-->
-        <!--<input type="text" id="editName" placeholder="输入name">-->
-        <!--<input type="text" id="editValue" placeholder="输入value">-->
-        <!--<input type="text" id="editEnabled" placeholder="输入enabled">-->
-        <!--<input type="text" id="editParentId" placeholder="输入parentId">-->
-        <!--<button (click)="editSave()" class="btn btn-default" data-id="" id="saveBtn">保存</button>-->
-    <!--</div>-->
+    <button class="btn btn-default" (click)="goToEdit()">添加字典管理</button>
 
     <table class="table table-condensed">
       <thead>
@@ -42,7 +26,6 @@
         <td>
           <a href="javascript:void(0);"  name="{{workBook.id}}" (click)="update(workBook.id)">修改</a>
           <a href="javascript:void(0);"  name="{{workBook.id}}" (click)="delItem($event)">删除</a>
-          <!--<a href="###">新建</a>-->
         </td>
       </tr>
 

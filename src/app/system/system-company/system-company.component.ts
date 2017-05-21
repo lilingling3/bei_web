@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnChanges} from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Location } from '@angular/common';
+import { SystemCompanyService } from './service/system-company.service';
 
 @Component({
   selector: 'app-system-company',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./system-company.component.css']
 })
 export class SystemCompanyComponent implements OnInit {
-
-  constructor() { }
+  private companies:any = {};
+  constructor(
+    private systemCompanyService:SystemCompanyService,
+  ) { }
 
   ngOnInit() {
+    this.getCompanies();
   }
 
+  getCompanies(){
+    return this.systemCompanyService.getCompanies()
+      .then(res =>{
+        console.log(res);
+      })
+  }
 }

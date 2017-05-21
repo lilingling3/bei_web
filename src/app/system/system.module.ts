@@ -11,9 +11,10 @@ import { SystemCompanyComponent } from './system-company/system-company.componen
 import { SystemMenuComponent } from './system-menu/system-menu.component';
 import { SystemPositionComponent } from './system-position/system-position.component';
 import { SystemRightComponent } from './system-right/system-right.component';
+import { DictionaryEditComponent } from './system-dictionary/dictionary-edit/dictionary-edit.component';
 
 import { SystemDictionaryService } from './system-dictionary/service/system-dictionary.service';
-import { DictionaryEditComponent } from './system-dictionary/dictionary-edit/dictionary-edit.component';
+import { SystemCompanyService } from './system-company/service/system-company.service';
 @NgModule({
   imports: [
     SharedModule,
@@ -31,6 +32,6 @@ import { DictionaryEditComponent } from './system-dictionary/dictionary-edit/dic
     SystemRightComponent,
     DictionaryEditComponent
   ],
-  providers:[SystemDictionaryService]
+  providers:[SystemDictionaryService,SystemCompanyService]
 })
 export class SystemModule { }

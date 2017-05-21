@@ -41,6 +41,7 @@ export class TopMenuComponent {
           console.log(content);
           this.navLists = content;
           }
+          // alert('111');
           // 发送请求后，引入js
           require('assets/js/custom.js');
         },

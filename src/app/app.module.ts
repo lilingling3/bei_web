@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule,Routes } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -42,6 +42,7 @@ import { AppErrorComponent } from './error/app.error.component';
     JsonpModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [
     AppService,

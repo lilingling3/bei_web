@@ -2,6 +2,7 @@
  * Created by linlin on 2017/4/17.
  */
 $(function(){
+
   console.log('custom.js 执行了');
   var reg=/\?/;
   var current_url = reg.test(window.location.href.split('http://localhost:4200/')[1])
@@ -12,13 +13,16 @@ $(function(){
   console.log(current_url);
 
   $top_menu = $(".top-nav");
-  //console.log("test=");
+  var router_begin = current_url.match(/#\/workentry\/\w+\/\w+/);
+  //console.log("router_begin=" + router_begin);
   //console.log($(".top-nav .test").html());
 
-  var $href = $top_menu.find('a[href="' + current_url + '"]');
-  //console.log("$href=");
+  var $href = $top_menu.find('a[href^="' + router_begin + '"]');
+  // var $href = $top_menu.find('a[href="' + current_url + '"]');
+  //var router = $top_menu.children('my-a').attr('href');
+  //console.log(router);
+  console.log("$href=");
   console.log($href);
-
   $href.parents('li').addClass('active');
   $href.parents('.tab-pane').addClass('active in');
 

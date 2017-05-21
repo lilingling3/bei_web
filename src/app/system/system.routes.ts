@@ -4,7 +4,7 @@ import { SystemCompanyComponent } from './system-company/system-company.componen
 import { SystemMenuComponent } from './system-menu/system-menu.component';
 import { SystemPositionComponent } from './system-position/system-position.component';
 import { SystemRightComponent } from './system-right/system-right.component';
-
+import { DictionaryEditComponent } from './system-dictionary/dictionary-edit/dictionary-edit.component';
 export const SystemRoutes = [{
   path: '',
   component: SystemComponent,
@@ -13,7 +13,9 @@ export const SystemRoutes = [{
     { path: 'dictionary',
       children:[
       {path:'', redirectTo:'page/1',pathMatch:'full'},
-      { path:'page/:page',component: SystemDictionaryComponent}
+      { path:'page/:page',component: SystemDictionaryComponent},
+      { path:'edit',component: DictionaryEditComponent},
+      { path:'edit/:id',component: DictionaryEditComponent}
     ]},
     { path: 'company', component: SystemCompanyComponent},
     { path: 'menu', component:SystemMenuComponent},

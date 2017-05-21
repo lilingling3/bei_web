@@ -1,1 +1,49 @@
+<div class="row">
+  <div class="col-sm-12">
 
+    <button class="btn btn-default" (click)="goToEdit()">添加公司管理</button>
+
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>full_name</th>
+        <th>type</th>
+        <th>contacts</th>
+        <th>tel</th>
+        <th>postcode</th>
+        <th>address</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let company of companies">
+        <td>{{company.id}}</td>
+        <td>{{company.name}}</td>
+        <td>{{company.full_name}}</td>
+        <td>{{company.type}}</td>
+        <td>{{company.contacts}}</td>
+        <td>{{company.tel}}</td>
+        <td>{{company.postcode}}</td>
+        <td>{{company.address}}</td>
+        <td>
+          <a href="javascript:void(0);"  name="{{company.id}}" (click)="update(company.id)">修改</a>
+          <a href="javascript:void(0);"  name="{{company.id}}" (click)="delItem($event)">删除</a>
+        </td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+
+<div class="station-pagination">
+  <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
+              firstText="{{'首页' }}" lastText="{{'尾页'}}"
+              previousText="{{'上一页'}}" nextText="{{'下一页'}}"
+              [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
+              (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from  '@angular/router';
 import { SystemDictionaryService } from '../service/system-dictionary.service';
-import {constructDependencies} from "@angular/core/src/di/reflective_provider";
 @Component({
   selector: 'app-dictionary-edit',
   templateUrl: './dictionary-edit.component.html',
@@ -34,7 +33,6 @@ export class DictionaryEditComponent implements OnInit {
     }
 
   }
-
 
   getWorkBookById(id:number){
     let ss_workBooks = sessionStorage.getItem('workBooks');

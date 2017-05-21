@@ -45,9 +45,11 @@ export class SystemDictionaryComponent implements OnInit{
             if(data.errorCode == 0){
               let offset = (this.currentPage -1 )*this.itemsPerPage;
               let end = this.currentPage*this.itemsPerPage;
-              console.log(offset);
-              console.log(end);
-              this.totalItems = 48;
+              // console.log(offset);
+              // console.log(end);
+              // 后台指定
+              this.totalItems = this.workBooks.length;
+              console.log(this.totalItems);
               this.workBookList =  this.workBooks.slice(offset,end>this.totalItems?this.totalItems:end);
               //console.log('this workBookList');
               //console.log(this.workBookList);
@@ -61,7 +63,7 @@ export class SystemDictionaryComponent implements OnInit{
         let end = this.currentPage*this.itemsPerPage;
         //console.log(offset);
         //console.log(end);
-        this.totalItems = 48;
+        this.totalItems = this.workBooks.length;
         this.workBookList = this.workBooks.slice(offset,end>this.totalItems?this.totalItems:end);
     }
   }

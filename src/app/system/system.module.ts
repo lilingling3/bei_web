@@ -15,6 +15,7 @@ import { DictionaryEditComponent } from './system-dictionary/dictionary-edit/dic
 
 import { SystemDictionaryService } from './system-dictionary/service/system-dictionary.service';
 import { SystemCompanyService } from './system-company/service/system-company.service';
+import { CompanyEditComponent } from './system-company/company-edit/company-edit.component';
 @NgModule({
   imports: [
     SharedModule,
@@ -30,7 +31,8 @@ import { SystemCompanyService } from './system-company/service/system-company.se
     SystemMenuComponent,
     SystemPositionComponent,
     SystemRightComponent,
-    DictionaryEditComponent
+    DictionaryEditComponent,
+    CompanyEditComponent
   ],
   providers:[SystemDictionaryService,SystemCompanyService]
 })

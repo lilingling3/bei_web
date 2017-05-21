@@ -21,8 +21,8 @@ $(function(){
   // var $href = $top_menu.find('a[href="' + current_url + '"]');
   //var router = $top_menu.children('my-a').attr('href');
   //console.log(router);
-  console.log("$href=");
-  console.log($href);
+  //console.log("$href=");
+  //console.log($href);
   $href.parents('li').addClass('active');
   $href.parents('.tab-pane').addClass('active in');
 

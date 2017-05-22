@@ -70,7 +70,7 @@ export class SystemDictionaryComponent implements OnInit{
 
 
   public pageChanged(event:any):void {
-    this.router.navigateByUrl("/workentry/systems/dictionary/page/"+event.page);
+    this.router.navigateByUrl("/workentry/system/dictionary/page/"+event.page);
   }
   // 删除
   public delItem(event){
@@ -108,11 +108,11 @@ export class SystemDictionaryComponent implements OnInit{
 }
 
   goToEdit(){
-    this.router.navigate(['workentry/systems/dictionary/edit'])
+    this.router.navigate(['workentry/system/dictionary/edit'])
   }
 
   update(id:number){
-    this.router.navigate(['workentry/systems/dictionary/edit',id])
+    this.router.navigate(['workentry/system/dictionary/edit',id])
   }
 
 

@@ -50,6 +50,7 @@ export class SystemPositionComponent implements OnInit {
       });
       if(confirm(`确定删除id为${id}吗`)){
         this.duties.splice(indexDuty,1);
+        this.positionServiceService.delDuties(id);
         sessionStorage.setItem('duties',JSON.stringify(this.duties));
         this.getAllDuties()
       }
@@ -64,6 +65,7 @@ export class SystemPositionComponent implements OnInit {
             });
             if(confirm(`确定删除id为${id}吗`)){
               this.duties.splice(indexDuty,1);
+              this.positionServiceService.delDuties(id);
               sessionStorage.setItem('duties',JSON.stringify(this.duties));
               this.getAllDuties()
             }

@@ -56,7 +56,7 @@ export class PositionEditComponent implements OnInit {
     if(this.isAdd){
       this.addDuty()
     }else {
-      this.editDuty()
+      this.editDuty(this.editId)
     }
   }
 
@@ -67,20 +67,21 @@ export class PositionEditComponent implements OnInit {
     }
     let new_id = +this.duties[this.duties.length-1].id +1;
     let add_duty = {
-      "id": new_id,
+      // "id": new_id,
       "sn": this.duty.sn,
       "name": this.duty.name,
       "parent_id": this.duty.parent_id,
       "company_id": this.duty.company_id
     };
     this.duties.push(add_duty);
+    this.positionServiceService.addDuties(add_duty);
     sessionStorage.setItem('duties',JSON.stringify(this.duties));
     this.router.navigate(['/workentry/system/position']);
   }
 
-  editDuty(){
+  editDuty(id:number){
     let edit_duty = {
-      "id": this.editId,
+      // "id": this.editId,
       "sn": this.duty.sn,
       "name": this.duty.name,
       "parent_id": this.duty.parent_id,
@@ -94,8 +95,8 @@ export class PositionEditComponent implements OnInit {
     });
 
     this.duties.splice(edit_index,1,edit_duty);
-
+    this.positionServiceService.editDuties(id,edit_duty)
     sessionStorage.setItem('duties',JSON.stringify(this.duties));
-    this.router.navigate(['/workentry/system/position'])
+    this.router.navigate(['/workentry/system/position']);
   }
 }

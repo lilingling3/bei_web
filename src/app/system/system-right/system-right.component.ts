@@ -51,6 +51,7 @@ export class SystemRightComponent implements OnInit {
       });
       if(confirm(`确定删除id为${id}吗`)) {
         this.rights.splice(right_index, 1);
+        this.rightServiceService.delRights(id);
         sessionStorage.setItem('right', JSON.stringify(this.rights));
         this.getRights()
       }
@@ -65,6 +66,7 @@ export class SystemRightComponent implements OnInit {
             });
             if(confirm(`确定删除id为${id}吗`)){
               this.rights.splice(menu_index,1);
+              this.rightServiceService.delRights(id);
               sessionStorage.setItem('menu',JSON.stringify(this.rights));
               this.getRights()
             }

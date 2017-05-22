@@ -50,6 +50,7 @@ export class SystemMenuComponent implements OnInit {
       });
       if(confirm(`确定删除id为${id}吗`)) {
         this.menuList.splice(menu_index, 1);
+        this.menuServiceService.delMenuList(id);
         sessionStorage.setItem('menu', JSON.stringify(this.menuList));
         this.getMenuLists()
       }
@@ -64,15 +65,13 @@ export class SystemMenuComponent implements OnInit {
             });
             if(confirm(`确定删除id为${id}吗`)){
               this.menuList.splice(menu_index,1);
+              this.menuServiceService.delMenuList(id);
               sessionStorage.setItem('menu',JSON.stringify(this.menuList));
               this.getMenuLists()
             }
           }
         })
     }
-
-
-
   }
 
 }

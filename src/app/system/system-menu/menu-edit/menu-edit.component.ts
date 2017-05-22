@@ -49,10 +49,6 @@ export class MenuEditComponent implements OnInit {
           }
         })
     }
-
-
-
-
   }
 
 
@@ -60,7 +56,7 @@ export class MenuEditComponent implements OnInit {
     if(this.isAdd){
       this.addMenu()
     }else {
-      this.editMenu()
+      this.editMenu(this.editId)
     }
   }
 
@@ -80,20 +76,21 @@ export class MenuEditComponent implements OnInit {
 
     let new_id = +this.menuList[this.menuList.length-1].id +1;
     let add_menu = {
-      "id": new_id,
+      // "id": new_id,
       "sn": this.menu.sn,
       "name": this.menu.name,
       "url":this.menu.url,
       "parent_id": this.menu.parent_id
     };
     this.menuList.push(add_menu);
+    this.menuServiceService.addMenuList(add_menu);
     sessionStorage.setItem('menu',JSON.stringify(this.menuList));
     this.router.navigate(['/workentry/system/menu'])
   }
 
-  editMenu(){
+  editMenu(id:number){
     let edit_menu = {
-      "id": this.editId,
+      // "id": this.editId,
       "sn": this.menu.sn,
       "name": this.menu.name,
       "url":this.menu.url,
@@ -102,12 +99,12 @@ export class MenuEditComponent implements OnInit {
     let ss_menu = sessionStorage.getItem('menu');
     this.menuList = JSON.parse(ss_menu);
     let edit_index = this.menuList.findIndex((value,index)=>{
-        return value.id == this.editId
+        return value.id == id
     });
 
     this.menuList.splice(edit_index,1,edit_menu);
+    this.menuServiceService.editMenuList(id,edit_menu);
     sessionStorage.setItem('menu',JSON.stringify(this.menuList));
     this.router.navigate(['/workentry/system/menu'])
-
   }
 }

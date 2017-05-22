@@ -16,7 +16,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let workBook of workBookList">
+      <tr *ngFor="let workBook of workBooks">
         <td>{{workBook.id}}</td>
         <td>{{workBook.sn}}</td>
         <td>{{workBook.name}}</td>
@@ -24,8 +24,8 @@
         <td>{{workBook.enabled}}</td>
         <td>{{workBook.parentId}}</td>
         <td>
-          <a href="javascript:void(0);"  name="{{workBook.id}}" (click)="update(workBook.id)">修改</a>
-          <a href="javascript:void(0);"  name="{{workBook.id}}" (click)="delItem($event)">删除</a>
+          <a href="javascript:void(0);" (click)="update(workBook.id)">修改</a>
+          <a href="javascript:void(0);" (click)="delItem(workBook.id)">删除</a>
         </td>
       </tr>
 

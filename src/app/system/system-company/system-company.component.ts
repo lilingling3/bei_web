@@ -25,12 +25,10 @@ export class SystemCompanyComponent implements OnInit {
     if(ss_companies){
       this.companies = JSON.parse(ss_companies);
     }else {
-      return this.systemCompanyService.getCompanies()
+     this.systemCompanyService.getCompanies()
         .then(res =>{
           if(res.errorCode == 0){
             this.companies = res.content;
-            console.log(typeof this.companies);
-            console.log(this.companies);
             sessionStorage.setItem('companies',JSON.stringify(this.companies));
           }
         })
@@ -38,29 +36,40 @@ export class SystemCompanyComponent implements OnInit {
 
   }
 
-  pageChanged(event:any):void{
-    this.router.navigateByUrl("/workentry/system/company/page/"+event.page);
-  }
+  // pageChanged(event:any):void{
+  //   this.router.navigateByUrl("/workentry/system/company/page/"+event.page);
+  // }
 
   // 删除
-  public delItem(event){
-    const target = event.currentTarget;
-    const nameAttr = target.attributes.name;
-    const id = nameAttr.nodeValue;
-    console.log('itemId>' + id);
+  public delItem(id:number){
     let ss_companies = sessionStorage.getItem('companies');
-
     if(ss_companies){
       this.companies = JSON.parse(ss_companies);
       let indexCompany= this.companies.findIndex(function (value, index) {
         return value.id == id;
       });
-      console.log(indexCompany);
       if(confirm(`确定删除id为${id}吗`)){
+        this.systemCompanyService.delCompanies(id);
         this.companies.splice(indexCompany,1);
         sessionStorage.setItem('companies',JSON.stringify(this.companies));
-        this.getCompanies()
+        this.getCompanies();
       }
+    }else {
+      this.systemCompanyService.getCompanies()
+        .then(res =>{
+          if(res.errorCode == 0){
+            this.companies = res.content;
+            let indexCompany= this.companies.findIndex(function (value, index) {
+              return value.id == id;
+            });
+            if(confirm(`确定删除id为${id}吗`)){
+              this.systemCompanyService.delCompanies(id);
+              this.companies.splice(indexCompany,1);
+              sessionStorage.setItem('companies',JSON.stringify(this.companies));
+              this.getCompanies();
+            }
+          }
+        })
     }
   }
 

@@ -50,7 +50,7 @@ export class DictionaryEditComponent implements OnInit {
       if(this.isAdd){
         this.addDictionary()
       }else {
-        this.editDictionary()
+        this.editDictionary(this.editId)
       }
   }
 
@@ -63,7 +63,7 @@ export class DictionaryEditComponent implements OnInit {
     let new_id = +this.workBooks[dictionary_length-1].id + 1;
     console.log(new_id);
     let new_dictionary = {
-      "id": new_id,
+      // "id": new_id,
       "sn": this.work.sn,
       "name": this.work.name,
       "value": this.work.value,
@@ -72,14 +72,13 @@ export class DictionaryEditComponent implements OnInit {
     };
 
     this.workBooks.push(new_dictionary);
+    this.systemDictionaryService.addWorkBooks(new_dictionary);
     sessionStorage.setItem('workBooks',JSON.stringify(this.workBooks));
     this.router.navigate(['/workentry/systems/dictionary']);
   }
 
-  editDictionary(){
-
-    let edit_contact = {
-      "id": this.editId,
+  editDictionary(id:number){
+    let edit_dictionary = {
       "sn": this.work.sn,
       "name": this.work.sn,
       "value": this.work.value,
@@ -89,14 +88,11 @@ export class DictionaryEditComponent implements OnInit {
 
     let ss_workBooks = sessionStorage.getItem('workBooks');
     this.workBooks = JSON.parse(ss_workBooks);
-
-     console.log(this.editId);
     let indexWorkBooks = this.workBooks.findIndex(function (value, index) {
-      return value.id == edit_contact.id;
+      return value.id == id;
     });
-     console.log('1111');
-    console.log(indexWorkBooks);
-    this.workBooks.splice(indexWorkBooks, 1, edit_contact);
+    this.workBooks.splice(indexWorkBooks, 1, edit_dictionary);
+    this.systemDictionaryService.editWorkBooks(id,edit_dictionary)
     sessionStorage.setItem("workBooks",JSON.stringify(this.workBooks));
     this.router.navigate(['/workentry/systems/dictionary']);
   }

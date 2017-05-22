@@ -28,8 +28,8 @@
         <td>{{company.postcode}}</td>
         <td>{{company.address}}</td>
         <td>
-          <a href="javascript:void(0);"  name="{{company.id}}" (click)="update(company.id)">修改</a>
-          <a href="javascript:void(0);"  name="{{company.id}}" (click)="delItem($event)">删除</a>
+          <a href="javascript:void(0);" (click)="update(company.id)">修改</a>
+          <a href="javascript:void(0);" (click)="delItem(company.id)">删除</a>
         </td>
       </tr>
 

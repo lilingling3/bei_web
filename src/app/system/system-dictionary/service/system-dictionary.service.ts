@@ -11,31 +11,31 @@ export class SystemDictionaryService {
 
   constructor(private http:Http){}
   //  获取列表 带分页
-  public getWorkBooks(page:number){
-    //return this.http.get("http://test2.cn/v1/wordbook");
-    // get 请求传递参数
-    let params = new URLSearchParams();
-    params.set('page',String(page));
-    return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/system/dictionary",{search:params});
-  }
-  //  不带分页
-  // public getWorkBooks(){
+  // public getWorkBooks(page:number){
   //   //return this.http.get("http://test2.cn/v1/wordbook");
-  //
-  //   return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/system/dictionary");
+  //   // get 请求传递参数
+  //   let params = new URLSearchParams();
+  //   params.set('page',String(page));
+  //   return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/system/dictionary",{search:params});
   // }
+
+  //  不带分页
+  public getWorkBooks(){
+    return this.http.get("http://test2.cn/v1/wordbook");
+    //return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/system/dictionary");
+  }
   // 修改
-  public correctWorkBooks(id,sn,name,value,enabled,parentId){
-    const body = `sn=${sn} & name=${name} & value=${value} & enabled=${enabled} & parentId=${parentId}`;
+  public editWorkBooks(id,body){
     return this.http.put("http://test2.cn/v1/wordbooks/"+id,body,{headers:this.headers});
+
   }
   // 删除
  public delWorkBooks(id){
    return this.http.delete("http://test2.cn/v1/wordbooks/"+id)
  }
+
  // 新建
-  public newWorkBooks(sn,name,value,enabled,parentId){
-    const body = `sn=${sn} & name=${name} & value=${value} & enabled=${enabled} & parentId=${parentId}`;
+  public addWorkBooks(body){
     return this.http.post("http://test2.cn/v1/wordbooks",body,{headers:this.headers});
   }
 

@@ -10,8 +10,23 @@ export class MenuServiceService {
   ) { }
 
   getMenuList(){
-   return this.http.get('https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/menu')
+   return this.http.get('http://test2.cn/v1/menu')
      .toPromise()
      .then(res =>res.json())
   }
+
+// 修改
+  public editMenuList(id,body){
+    return this.http.put("http://test2.cn/v1/menu/"+id,body,{headers:this.headers});
+  }
+  // 删除
+  public delMenuList(id){
+    return this.http.delete("http://test2.cn/v1/menu/"+id)
+  }
+
+  // 新建
+  public addMenuList(body){
+    return this.http.post("http://test2.cn/v1/menu",body,{headers:this.headers});
+  }
+
 }

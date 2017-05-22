@@ -12,8 +12,22 @@ export class PositionServiceService {
   ) { }
 
   getDuties(){
-    return this.http.get('https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/duty')
+    return this.http.get('http://test2.cn/v1/duty')
       .toPromise()
       .then(res => res.json())
+  }
+
+  // 修改
+  public editDuties(id,body){
+    return this.http.put("http://test2.cn/v1/duties/"+id,body,{headers:this.headers});
+  }
+  // 删除
+  public delDuties(id){
+    return this.http.delete("http://test2.cn/v1/duties/"+id)
+  }
+
+  // 新建
+  public addDuties(body){
+    return this.http.post("http://test2.cn/v1/duties",body,{headers:this.headers});
   }
 }

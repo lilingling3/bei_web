@@ -36,13 +36,24 @@ export class CompanyEditComponent implements OnInit {
 
   getCompanyById(id:number){
     let ss_companies = sessionStorage.getItem('companies');
-
     if(ss_companies){
       this.companies = JSON.parse(ss_companies);
       let company_index = this.companies.findIndex((value,index)=>{
         return value.id == id;
       });
       this.company = this.companies[company_index];
+    }else {
+      this.systemCompanyService.getCompanies()
+        .then(res =>{
+          if(res.errorCode == 0){
+            this.companies = res.content;
+            sessionStorage.setItem('companies',JSON.stringify(this.companies));
+            let company_index = this.companies.findIndex((value,index)=>{
+              return value.id == id;
+            });
+            this.company = this.companies[company_index];
+          }
+        })
     }
   }
 
@@ -50,7 +61,7 @@ export class CompanyEditComponent implements OnInit {
     if(this.isAdd){
       this.addCompany()
     }else {
-      this.editCompany()
+      this.editCompany(this.editId)
     }
   }
 
@@ -64,7 +75,6 @@ export class CompanyEditComponent implements OnInit {
     let new_id = +this.companies[company_length-1].id +1;
     console.log(new_id);
     let new_company = {
-      "id": new_id,
       "name": this.company.name,
       "full_name": this.company.full_name,
       "type": this.company.type,
@@ -75,14 +85,15 @@ export class CompanyEditComponent implements OnInit {
     };
 
     this.companies.push(new_company);
+    this.systemCompanyService.addCompanies(new_company);
     console.log(this.companies);
     sessionStorage.setItem('companies',JSON.stringify(this.companies));
     this.router.navigate(['/workentry/system/company']);
   }
 
-  editCompany(){
+  editCompany(id:number){
     let edit_company = {
-      "id": this.editId,
+      // "id": this.editId,
       "name": this.company.name,
       "full_name": this.company.full_name,
       "type": this.company.type,
@@ -96,10 +107,11 @@ export class CompanyEditComponent implements OnInit {
     this.companies = JSON.parse(ss_companies);
 
     let company_index = this.companies.findIndex((value,index)=>{
-      return value.id == this.editId
+      return value.id == id;
     });
 
     this.companies.splice(company_index,1,edit_company);
+    this.systemCompanyService.editCompanies(id,edit_company);
     sessionStorage.setItem('companies', JSON.stringify(this.companies));
     this.router.navigate(['/workentry/system/company']);
   }

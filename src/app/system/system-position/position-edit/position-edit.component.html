@@ -1,0 +1,12 @@
+<div class="edit">
+  <div class="edit-text">{{title}}</div>
+
+  <form #dutyForm="ngForm" (ngSubmit)="submitForm()">
+    sn:  <input type="text" value="{{duty.sn}}" [(ngModel)]="duty.sn" name="sn"> <br>
+    name: <input type="text" value="{{duty.name}}" [(ngModel)]="duty.name" name="name">  <br>
+    parent_id: <input type="text" value="{{duty.parent_id}}" [(ngModel)]="duty.parent_id" name="parent_id">  <br>
+    company_id: <input type="text" value="{{duty.company_id}}" [(ngModel)]="duty.company_id" name="duty_id">  <br>
+    <button class="btn btn-default" type="submit">保存</button>
+  </form>
+
+</div>

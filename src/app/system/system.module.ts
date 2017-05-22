@@ -12,10 +12,16 @@ import { SystemMenuComponent } from './system-menu/system-menu.component';
 import { SystemPositionComponent } from './system-position/system-position.component';
 import { SystemRightComponent } from './system-right/system-right.component';
 import { DictionaryEditComponent } from './system-dictionary/dictionary-edit/dictionary-edit.component';
-
+import { MenuEditComponent } from './system-menu/menu-edit/menu-edit.component';
+import { CompanyEditComponent } from './system-company/company-edit/company-edit.component';
+import { PositionEditComponent } from './system-position/position-edit/position-edit.component';
+import { EditRightComponent} from './system-right/edit-right/edit-right.component';
+import { ShowRightComponent } from './system-right/show-right/show-right.component';
 import { SystemDictionaryService } from './system-dictionary/service/system-dictionary.service';
 import { SystemCompanyService } from './system-company/service/system-company.service';
-import { CompanyEditComponent } from './system-company/company-edit/company-edit.component';
+import { PositionServiceService } from './system-position/service/position-service.service';
+import { MenuServiceService } from './system-menu/service/menu-service.service';
+import { RightServiceService } from './system-right/service/right-service.service';
 @NgModule({
   imports: [
     SharedModule,
@@ -32,8 +38,12 @@ import { CompanyEditComponent } from './system-company/company-edit/company-edit
     SystemPositionComponent,
     SystemRightComponent,
     DictionaryEditComponent,
-    CompanyEditComponent
+    CompanyEditComponent,
+    PositionEditComponent,
+    EditRightComponent,
+    MenuEditComponent,
+    ShowRightComponent
   ],
-  providers:[SystemDictionaryService,SystemCompanyService]
+  providers:[SystemDictionaryService,SystemCompanyService,PositionServiceService,MenuServiceService,RightServiceService]
 })
 export class SystemModule { }

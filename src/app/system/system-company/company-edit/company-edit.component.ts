@@ -77,7 +77,7 @@ export class CompanyEditComponent implements OnInit {
     this.companies.push(new_company);
     console.log(this.companies);
     sessionStorage.setItem('companies',JSON.stringify(this.companies));
-    this.router.navigate(['/workentry/systems/company']);
+    this.router.navigate(['/workentry/system/company']);
   }
 
   editCompany(){
@@ -101,7 +101,7 @@ export class CompanyEditComponent implements OnInit {
 
     this.companies.splice(company_index,1,edit_company);
     sessionStorage.setItem('companies', JSON.stringify(this.companies));
-    this.router.navigate(['/workentry/systems/company']);
+    this.router.navigate(['/workentry/system/company']);
   }
 
 

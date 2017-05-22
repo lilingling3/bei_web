@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div [ngClass]="{hidden:!hidden}">没有duty_menu数据</div>
+    <button (click)="goBack()" class="btn btn-default"> 返回</button>
+    <table class="table table-condensed" [ngClass]="{hidden: hidden}">
+      <thead>
+      <tr>
+        <th>dutyId</th>
+        <th>name</th>
+        <th>id</th>
+        <th>parentId</th>
+        <th>action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let role of roles">
+        <td>{{role.dutyId}}</td>
+        <td>{{role.name}}</td>
+        <td>{{role.id}}</td>
+        <td>{{role.parentId}}</td>
+        <td>
+          <span *ngFor="let action of role.action">
+            <span *ngIf="action == ''">没有action</span>
+            <span *ngIf="action == 46">新建</span>
+            <span *ngIf="action == 47">删除</span>
+            <span *ngIf="action == 48">编辑</span>
+          </span>
+        </td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+
+
+
+

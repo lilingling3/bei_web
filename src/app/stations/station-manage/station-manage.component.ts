@@ -166,7 +166,7 @@ export class StationManageComponent implements OnInit {
   }
 
   public pageChanged(event:any):void {
-    this.router.navigateByUrl("/workentry/stations/manage/page/"+event.page);
+    this.router.navigateByUrl("/workentry/station/manage/page/"+event.page);
   }
 
 }

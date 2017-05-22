@@ -39,7 +39,7 @@ export class SystemCompanyComponent implements OnInit {
   }
 
   pageChanged(event:any):void{
-    this.router.navigateByUrl("/workentry/systems/company/page/"+event.page);
+    this.router.navigateByUrl("/workentry/system/company/page/"+event.page);
   }
 
   // 删除
@@ -65,11 +65,11 @@ export class SystemCompanyComponent implements OnInit {
   }
 
   goToEdit(){
-    this.router.navigate(['workentry/systems/company/edit'])
+    this.router.navigate(['workentry/system/company/edit'])
   }
 
   update(id:number){
-    this.router.navigate(['workentry/systems/company/edit',id])
+    this.router.navigate(['workentry/system/company/edit',id])
   }
 
 }

@@ -17,16 +17,16 @@ export class MenuServiceService {
 
 // 修改
   public editMenuList(id,body){
-    return this.http.put("http://test2.cn/v1/menu/"+id,body,{headers:this.headers});
+    return this.http.put("http://test2.cn/v1/menus/"+id,body,{headers:this.headers});
   }
   // 删除
   public delMenuList(id){
-    return this.http.delete("http://test2.cn/v1/menu/"+id)
+    return this.http.delete("http://test2.cn/v1/menus/"+id)
   }
 
   // 新建
   public addMenuList(body){
-    return this.http.post("http://test2.cn/v1/menu",body,{headers:this.headers});
+    return this.http.post("http://test2.cn/v1/menus",body,{headers:this.headers});
   }
 
 }

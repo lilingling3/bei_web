@@ -2,7 +2,7 @@ import { Component, OnInit , OnChanges} from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { SystemCompanyService } from './service/system-company.service';
-
+import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'app-system-company',
   templateUrl: './system-company.component.html',
@@ -10,10 +10,17 @@ import { SystemCompanyService } from './service/system-company.service';
 })
 export class SystemCompanyComponent implements OnInit {
   private companies;
+  private URL_COMPANY = 'http://test2.cn/v1/companies';
+  private headers = new Headers({
+    'Content-Type':'application/x-www-form-urlencoded',
+    // 'Accept': 'application/json'
+  });
+  private company;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,
     private systemCompanyService:SystemCompanyService,
+    private http:Http
   ) { }
 
   ngOnInit() {
@@ -21,19 +28,14 @@ export class SystemCompanyComponent implements OnInit {
   }
 
   getCompanies(){
-    let ss_companies = sessionStorage.getItem('companies');
-    if(ss_companies){
-      this.companies = JSON.parse(ss_companies);
-    }else {
+    console.log('获取公司列表');
      this.systemCompanyService.getCompanies()
         .then(res =>{
           if(res.errorCode == 0){
             this.companies = res.content;
-            sessionStorage.setItem('companies',JSON.stringify(this.companies));
+            console.log(this.companies);
           }
-        })
-    }
-
+        });
   }
 
   // pageChanged(event:any):void{
@@ -42,19 +44,8 @@ export class SystemCompanyComponent implements OnInit {
 
   // 删除
   public delItem(id:number){
-    let ss_companies = sessionStorage.getItem('companies');
-    if(ss_companies){
-      this.companies = JSON.parse(ss_companies);
-      let indexCompany= this.companies.findIndex(function (value, index) {
-        return value.id == id;
-      });
-      if(confirm(`确定删除id为${id}吗`)){
-        this.systemCompanyService.delCompanies(id);
-        this.companies.splice(indexCompany,1);
-        sessionStorage.setItem('companies',JSON.stringify(this.companies));
-        this.getCompanies();
-      }
-    }else {
+    console.log('删除公司');
+    console.log(id);
       this.systemCompanyService.getCompanies()
         .then(res =>{
           if(res.errorCode == 0){
@@ -62,15 +53,22 @@ export class SystemCompanyComponent implements OnInit {
             let indexCompany= this.companies.findIndex(function (value, index) {
               return value.id == id;
             });
+            console.log(indexCompany);
+            this.company = this.companies[indexCompany];
+            let headers = new Headers({ 'content-type':'application/x-www-form-urlencoded'});
+            let options = new RequestOptions({ headers: headers });
             if(confirm(`确定删除id为${id}吗`)){
-              this.systemCompanyService.delCompanies(id);
-              this.companies.splice(indexCompany,1);
-              sessionStorage.setItem('companies',JSON.stringify(this.companies));
-              this.getCompanies();
+                const url = `${this.URL_COMPANY}/${id}`;
+                this.http.delete(url,options)
+                  .toPromise()
+                  .then(()=>{
+                    console.log('llll');
+                    this.companies = this.companies.filter(company =>company!=this.company);
+                  })
             }
           }
-        })
-    }
+        });
+    // }
   }
 
   goToEdit(){

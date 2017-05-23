@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from  '@angular/router';
 import { SystemCompanyService } from '../service/system-company.service';
-
+import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'app-company-edit',
   templateUrl: './company-edit.component.html',
@@ -13,10 +13,15 @@ export class CompanyEditComponent implements OnInit {
   private editId:number;
   private company:any ={};
   private companies:any ={};
+  private headers = new Headers({
+    'Content-Type':'application/json',
+    'Accept': 'application/json'
+  });
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
-    private systemCompanyService:SystemCompanyService
+    private systemCompanyService:SystemCompanyService,
+    private http:Http,
   ) { }
 
   ngOnInit() {
@@ -35,87 +40,105 @@ export class CompanyEditComponent implements OnInit {
   }
 
   getCompanyById(id:number){
-    let ss_companies = sessionStorage.getItem('companies');
-    if(ss_companies){
-      this.companies = JSON.parse(ss_companies);
-      let company_index = this.companies.findIndex((value,index)=>{
-        return value.id == id;
-      });
-      this.company = this.companies[company_index];
-    }else {
+    console.log(id);
       this.systemCompanyService.getCompanies()
         .then(res =>{
           if(res.errorCode == 0){
             this.companies = res.content;
-            sessionStorage.setItem('companies',JSON.stringify(this.companies));
+            //sessionStorage.setItem('companies',JSON.stringify(this.companies));
             let company_index = this.companies.findIndex((value,index)=>{
               return value.id == id;
             });
+            console.log(this.company);
             this.company = this.companies[company_index];
           }
-        })
-    }
+        });
   }
 
   submitForm(){
     if(this.isAdd){
+      console.log('增加');
       this.addCompany()
     }else {
-      this.editCompany(this.editId)
+      console.log('编辑');
+      // this.editCompany(this.editId)
     }
   }
 
+  getCompanies(){
+    this.systemCompanyService.getCompanies()
+      .then(res =>{
+        if(res.errorCode == 0){
+          this.companies = res.content;
+          console.log(this.companies);
+        }
+      });
+  }
   addCompany(){
-    console.log('111');
-    let ss_companies = sessionStorage.getItem('companies');
-    this.companies = JSON.parse(ss_companies);
-    let company_length = this.companies.length;
-    console.log(company_length);
+    // post 请求 必须是这个
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
 
-    let new_id = +this.companies[company_length-1].id +1;
-    console.log(new_id);
     let new_company = {
       "name": this.company.name,
       "full_name": this.company.full_name,
       "type": this.company.type,
+      "code": this.company.code,
       "contacts": this.company.contacts,
       "tel": this.company.tel,
       "postcode": this.company.postcode,
       "address": this.company.address
     };
-
-    this.companies.push(new_company);
-    this.systemCompanyService.addCompanies(new_company);
-    console.log(this.companies);
-    sessionStorage.setItem('companies',JSON.stringify(this.companies));
-    this.router.navigate(['/workentry/system/company']);
+    let body = "name=" + new_company.name+"&full_name="+new_company.full_name+
+      "&type=" + new_company.type+"&code="+new_company.code+
+      "&contacts=" + new_company.contacts+"&tel="+new_company.tel+
+      "&postcode=" + new_company.postcode+"&address="+new_company.address;
+    console.log(body);
+    this.http.post('http://test2.cn/v1/companies',body,options)
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.router.navigate(['/workentry/system/company']);
+        },
+        error => {
+          console.log(error.text());
+        })
   }
 
   editCompany(id:number){
     let edit_company = {
-      // "id": this.editId,
       "name": this.company.name,
       "full_name": this.company.full_name,
       "type": this.company.type,
+      "code": this.company.code,
       "contacts": this.company.contacts,
       "tel": this.company.tel,
       "postcode": this.company.postcode,
       "address": this.company.address
     };
 
-    let ss_companies = sessionStorage.getItem('companies');
-    this.companies = JSON.parse(ss_companies);
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    let body = "name=" + edit_company.name+"&full_name="+edit_company.full_name+
+      "&type=" + edit_company.type+"&code="+edit_company.code+
+      "&contacts=" + edit_company.contacts+"&tel="+edit_company.tel+
+      "&postcode=" + edit_company.postcode+"&address="+edit_company.address;
+    //let ss_companies = sessionStorage.getItem('companies');
+    //this.companies = JSON.parse(ss_companies);
 
     let company_index = this.companies.findIndex((value,index)=>{
       return value.id == id;
     });
-
-    this.companies.splice(company_index,1,edit_company);
-    this.systemCompanyService.editCompanies(id,edit_company);
-    sessionStorage.setItem('companies', JSON.stringify(this.companies));
+    this.http.put('http://test2.cn/v1/companies/'+id,body,options)
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.router.navigate(['/workentry/system/company']);
+        },
+        error => {
+          console.log(error.text());
+        });
+    this.getCompanies();
     this.router.navigate(['/workentry/system/company']);
   }
-
-
-
 }

@@ -74,7 +74,7 @@ export class DictionaryEditComponent implements OnInit {
     this.workBooks.push(new_dictionary);
     this.systemDictionaryService.addWorkBooks(new_dictionary);
     sessionStorage.setItem('workBooks',JSON.stringify(this.workBooks));
-    this.router.navigate(['/workentry/systems/dictionary']);
+    this.router.navigate(['/workentry/system/dictionary']);
   }
 
   editDictionary(id:number){
@@ -94,6 +94,6 @@ export class DictionaryEditComponent implements OnInit {
     this.workBooks.splice(indexWorkBooks, 1, edit_dictionary);
     this.systemDictionaryService.editWorkBooks(id,edit_dictionary)
     sessionStorage.setItem("workBooks",JSON.stringify(this.workBooks));
-    this.router.navigate(['/workentry/systems/dictionary']);
+    this.router.navigate(['/workentry/system/dictionary']);
   }
 }

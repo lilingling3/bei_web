@@ -65,15 +65,6 @@ export class CompanyEditComponent implements OnInit {
     }
   }
 
-  getCompanies(){
-    this.systemCompanyService.getCompanies()
-      .then(res =>{
-        if(res.errorCode == 0){
-          this.companies = res.content;
-          console.log(this.companies);
-        }
-      });
-  }
   addCompany(){
     // post 请求 必须是这个
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
@@ -123,8 +114,6 @@ export class CompanyEditComponent implements OnInit {
       "&type=" + edit_company.type+"&code="+edit_company.code+
       "&contacts=" + edit_company.contacts+"&tel="+edit_company.tel+
       "&postcode=" + edit_company.postcode+"&address="+edit_company.address;
-    //let ss_companies = sessionStorage.getItem('companies');
-    //this.companies = JSON.parse(ss_companies);
 
     let company_index = this.companies.findIndex((value,index)=>{
       return value.id == id;
@@ -138,7 +127,5 @@ export class CompanyEditComponent implements OnInit {
         error => {
           console.log(error.text());
         });
-    this.getCompanies();
-    this.router.navigate(['/workentry/system/company']);
   }
 }

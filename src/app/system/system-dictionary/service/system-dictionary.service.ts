@@ -24,19 +24,4 @@ export class SystemDictionaryService {
     return this.http.get("http://test2.cn/v1/wordbook");
     //return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/system/dictionary");
   }
-  // 修改
-  public editWorkBooks(id,body){
-    return this.http.put("http://test2.cn/v1/wordbooks/"+id,body,{headers:this.headers});
-
-  }
-  // 删除
- public delWorkBooks(id){
-   return this.http.delete("http://test2.cn/v1/wordbooks/"+id)
- }
-
- // 新建
-  public addWorkBooks(body){
-    return this.http.post("http://test2.cn/v1/wordbooks",body,{headers:this.headers});
-  }
-
 }

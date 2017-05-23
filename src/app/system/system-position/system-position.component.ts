@@ -2,7 +2,7 @@ import { Component, OnInit , OnChanges} from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { PositionServiceService } from './service/position-service.service';
-
+import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'app-system-position',
   templateUrl: './system-position.component.html',
@@ -10,10 +10,12 @@ import { PositionServiceService } from './service/position-service.service';
 })
 export class SystemPositionComponent implements OnInit {
   private duties;
+  private duty;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,
     private positionServiceService:PositionServiceService,
+    private http:Http
   ) { }
 
   ngOnInit() {
@@ -42,34 +44,22 @@ export class SystemPositionComponent implements OnInit {
 
   // 删除
   public delItem(id:number){
-    let ss_duties = sessionStorage.getItem('duties');
-    if(ss_duties){
-      this.duties = JSON.parse(ss_duties);
-      let indexDuty= this.duties.findIndex(function (value, index) {
-        return value.id == id;
-      });
-      if(confirm(`确定删除id为${id}吗`)){
-        this.duties.splice(indexDuty,1);
-        this.positionServiceService.delDuties(id);
-        sessionStorage.setItem('duties',JSON.stringify(this.duties));
-        this.getAllDuties()
-      }
-    }else {
-      this.positionServiceService.getDuties()
-        .then(res =>{
-          if(res.errorCode == 0){
-            this.duties = res.content;
-            sessionStorage.setItem('duties',JSON.stringify(this.duties));
-            let indexDuty= this.duties.findIndex(function (value, index) {
-              return value.id == id;
-            });
-            if(confirm(`确定删除id为${id}吗`)){
-              this.duties.splice(indexDuty,1);
-              this.positionServiceService.delDuties(id);
-              sessionStorage.setItem('duties',JSON.stringify(this.duties));
-              this.getAllDuties()
-            }
-          }
+    let indexduties = this.duties.findIndex(function (value, index) {
+      return value.id == id;
+    });
+
+
+    this.duty = this.duties[indexduties];
+
+    let headers = new Headers({'content-type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({headers: headers});
+    if (confirm(`确定删除id为${id}吗`)) {
+      const url = 'http://test2.cn/v1/duties/' + id;
+      this.http.delete(url, options)
+        .toPromise()
+        .then(()=> {
+          console.log('llll');
+          this.duties = this.duties.filter(duty =>duty != this.duty);
         })
     }
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from  '@angular/router';
 import { SystemDictionaryService } from '../service/system-dictionary.service';
+import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'app-dictionary-edit',
   templateUrl: './dictionary-edit.component.html',
@@ -17,7 +18,8 @@ export class DictionaryEditComponent implements OnInit {
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
-    private systemDictionaryService:SystemDictionaryService
+    private systemDictionaryService:SystemDictionaryService,
+    private http:Http,
   ) { }
 
   ngOnInit() {
@@ -55,15 +57,11 @@ export class DictionaryEditComponent implements OnInit {
   }
 
   addDictionary(){
-    let ss_workBooks = sessionStorage.getItem('workBooks');
-    this.workBooks = JSON.parse(ss_workBooks);
+    // post 请求 必须是这个
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
 
-    let dictionary_length = this.workBooks.length;
-    console.log(dictionary_length);
-    let new_id = +this.workBooks[dictionary_length-1].id + 1;
-    console.log(new_id);
     let new_dictionary = {
-      // "id": new_id,
       "sn": this.work.sn,
       "name": this.work.name,
       "value": this.work.value,
@@ -71,13 +69,23 @@ export class DictionaryEditComponent implements OnInit {
       "parentId":this.work.parentId
     };
 
-    this.workBooks.push(new_dictionary);
-    this.systemDictionaryService.addWorkBooks(new_dictionary);
-    sessionStorage.setItem('workBooks',JSON.stringify(this.workBooks));
-    this.router.navigate(['/workentry/system/dictionary']);
+    let body = "sn=" + new_dictionary.sn+"&name="+new_dictionary.name+
+      "&value=" + new_dictionary.value+"&enabled="+new_dictionary.enabled;
+
+    console.log(body);
+    this.http.post('http://test2.cn/v1/wordbooks',body,options)
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.router.navigate(['/workentry/system/dictionary']);
+        },
+        error => {
+          console.log(error.text());
+        })
   }
 
   editDictionary(id:number){
+
     let edit_dictionary = {
       "sn": this.work.sn,
       "name": this.work.sn,
@@ -86,14 +94,25 @@ export class DictionaryEditComponent implements OnInit {
       "parentId":this.work.parentId,
     };
 
-    let ss_workBooks = sessionStorage.getItem('workBooks');
-    this.workBooks = JSON.parse(ss_workBooks);
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+
+
+    let body = "sn=" + edit_dictionary.sn+"&name="+edit_dictionary.name+
+      "&value=" + edit_dictionary.value+"&enabled="+edit_dictionary.enabled;
+
     let indexWorkBooks = this.workBooks.findIndex(function (value, index) {
       return value.id == id;
     });
-    this.workBooks.splice(indexWorkBooks, 1, edit_dictionary);
-    this.systemDictionaryService.editWorkBooks(id,edit_dictionary)
-    sessionStorage.setItem("workBooks",JSON.stringify(this.workBooks));
-    this.router.navigate(['/workentry/system/dictionary']);
-  }
+    this.http.put('http://test2.cn/v1/wordbooks/'+id,body,options)
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.router.navigate(['/workentry/system/company']);
+        },
+        error => {
+          console.log(error.text());
+        });
+
+    }
 }

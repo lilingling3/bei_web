@@ -2,7 +2,7 @@ import { Component, OnInit , OnChanges} from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { SystemDictionaryService } from './service/system-dictionary.service';
-
+import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'system-dictionary',
   templateUrl: './system-dictionary.component.html',
@@ -16,11 +16,13 @@ export class SystemDictionaryComponent implements OnInit{
   public currentPage:number = 1;// 当前页数
   public numPages;
   public workBooks;
+  public workBook;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,
     private systemDictionaryService:SystemDictionaryService,
-    private location:Location
+    private location:Location,
+    private http:Http
   ) { }
 
   ngOnInit() {
@@ -69,23 +71,14 @@ export class SystemDictionaryComponent implements OnInit{
   // }
 
 public getWorkBookList() {
-    // 使用session 模拟操作
-    let ss_workBooks = sessionStorage.getItem('workBooks');
-    if(!ss_workBooks){
       this.systemDictionaryService.getWorkBooks()
         .subscribe(
           res => {
             var data = res.json();
             if(data.errorCode == 0){
               this.workBooks = data.content;
-              sessionStorage.setItem('workBooks',JSON.stringify(this.workBooks));
             }
-          }
-        )
-    }else {
-        let ss_workBooks = sessionStorage.getItem('workBooks');
-        this.workBooks = JSON.parse(ss_workBooks);
-    }
+          })
   }
 
   // public pageChanged(event:any):void {
@@ -94,37 +87,23 @@ public getWorkBookList() {
 
   // 删除
   public delItem(id:number){
-    let ss_workBooks = sessionStorage.getItem('workBooks');
-    if(ss_workBooks){
-      this.workBooks = JSON.parse(ss_workBooks);
-      let indexWorkBooks = this.workBooks.findIndex(function (value, index) {
-        return value.id == id;
-      });
-      if(confirm(`确定删除id为${id}吗`)){
-        this.workBooks.splice(indexWorkBooks,1);
-        this.systemDictionaryService.delWorkBooks(id);
-        sessionStorage.setItem('workBooks',JSON.stringify(this.workBooks));
-        this.getWorkBookList();
-      }
-    }else {
-      this.systemDictionaryService.getWorkBooks()
-        .subscribe(
-          res => {
-            var data = res.json();
-            if(data.errorCode == 0){
-              this.workBooks = data.content;
-              let indexWorkBooks = this.workBooks.findIndex(function (value, index) {
-                return value.id == id;
-              });
-              if(confirm(`确定删除id为${id}吗`)){
-                this.workBooks.splice(indexWorkBooks,1);
-                this.systemDictionaryService.delWorkBooks(id);
-                sessionStorage.setItem('workBooks',JSON.stringify(this.workBooks));
-                this.getWorkBookList();
-              }
-            }
-          }
-        )
+    let indexWorkBooks = this.workBooks.findIndex(function (value, index) {
+      return value.id == id;
+    });
+
+
+    this.workBook = this.workBooks[indexWorkBooks];
+
+    let headers = new Headers({ 'content-type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    if(confirm(`确定删除id为${id}吗`)){
+      const url = 'http://test2.cn/v1/wordbook/'+id;
+      this.http.delete(url,options)
+        .toPromise()
+        .then(()=>{
+          console.log('llll');
+          this.workBooks = this.workBooks.filter(workBook =>workBook!=this.workBook);
+        })
     }
 }
 

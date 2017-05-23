@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from  '@angular/router';
 import { PositionServiceService } from '../service/position-service.service';
-
+import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'app-position-edit',
   templateUrl: './position-edit.component.html',
@@ -16,7 +16,8 @@ export class PositionEditComponent implements OnInit {
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
-    private positionServiceService:PositionServiceService
+    private positionServiceService:PositionServiceService,
+    private http:Http
   ) { }
 
   ngOnInit() {
@@ -61,42 +62,49 @@ export class PositionEditComponent implements OnInit {
   }
 
   addDuty(){
-    let ss_duties = sessionStorage.getItem('duties');
-    if(ss_duties){
-      this.duties = JSON.parse(ss_duties)
-    }
-    let new_id = +this.duties[this.duties.length-1].id +1;
     let add_duty = {
-      // "id": new_id,
       "sn": this.duty.sn,
       "name": this.duty.name,
       "parent_id": this.duty.parent_id,
       "company_id": this.duty.company_id
     };
-    this.duties.push(add_duty);
-    this.positionServiceService.addDuties(add_duty);
-    sessionStorage.setItem('duties',JSON.stringify(this.duties));
-    this.router.navigate(['/workentry/system/position']);
+
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    let body = "sn=" + add_duty.sn+"&name="+add_duty.name+
+      "&parent_id=" + add_duty.parent_id+"&company_id="+add_duty.company_id;
+    this.http.post('http://test2.cn/v1/duties/',body,options)
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.router.navigate(['/workentry/system/position']);
+        },
+        error => {
+          console.log(error.text());
+        });
   }
+
 
   editDuty(id:number){
     let edit_duty = {
-      // "id": this.editId,
       "sn": this.duty.sn,
       "name": this.duty.name,
       "parent_id": this.duty.parent_id,
       "company_id": this.duty.company_id
     };
-    let ss_duties = sessionStorage.getItem('duties');
-    this.duties = JSON.parse(ss_duties);
 
-    let edit_index = this.duties.findIndex((value,index) => {
-      return value.id == this.editId
-    });
-
-    this.duties.splice(edit_index,1,edit_duty);
-    this.positionServiceService.editDuties(id,edit_duty)
-    sessionStorage.setItem('duties',JSON.stringify(this.duties));
-    this.router.navigate(['/workentry/system/position']);
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+    let body = "sn=" + edit_duty.sn+"&name="+edit_duty.name+
+      "&parent_id=" + edit_duty.parent_id+"&company_id="+edit_duty.company_id;
+    this.http.put('http://test2.cn/v1/duties/',body,options)
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.router.navigate(['/workentry/system/position']);
+        },
+        error => {
+          console.log(error.text());
+        });
   }
 }

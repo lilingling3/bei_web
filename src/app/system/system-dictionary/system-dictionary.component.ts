@@ -2,7 +2,6 @@ import { Component, OnInit , OnChanges} from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { SystemDictionaryService } from './service/system-dictionary.service';
-import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'system-dictionary',
   templateUrl: './system-dictionary.component.html',
@@ -22,7 +21,6 @@ export class SystemDictionaryComponent implements OnInit{
     public activatedRoute:ActivatedRoute,
     private systemDictionaryService:SystemDictionaryService,
     private location:Location,
-    private http:Http
   ) { }
 
   ngOnInit() {
@@ -72,11 +70,10 @@ export class SystemDictionaryComponent implements OnInit{
 
 public getWorkBookList() {
       this.systemDictionaryService.getWorkBooks()
-        .subscribe(
+        .then(
           res => {
-            var data = res.json();
-            if(data.errorCode == 0){
-              this.workBooks = data.content;
+            if(res.errorCode == 0){
+              this.workBooks = res.content;
             }
           })
   }
@@ -91,18 +88,12 @@ public getWorkBookList() {
       return value.id == id;
     });
 
-
     this.workBook = this.workBooks[indexWorkBooks];
 
-    let headers = new Headers({ 'content-type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
     if(confirm(`确定删除id为${id}吗`)){
-      const url = 'http://test2.cn/v1/wordbook/'+id;
-      this.http.delete(url,options)
-        .toPromise()
-        .then(()=>{
-          console.log('llll');
-          this.workBooks = this.workBooks.filter(workBook =>workBook!=this.workBook);
+      this.systemDictionaryService.delWorkBooks(id)
+        .subscribe(res =>{
+          console.log(res.json());
         })
     }
 }

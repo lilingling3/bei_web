@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from  '@angular/router';
 import { SystemCompanyService } from '../service/system-company.service';
-import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
 @Component({
   selector: 'app-company-edit',
   templateUrl: './company-edit.component.html',
@@ -13,15 +12,10 @@ export class CompanyEditComponent implements OnInit {
   private editId:number;
   private company:any ={};
   private companies:any ={};
-  private headers = new Headers({
-    'Content-Type':'application/json',
-    'Accept': 'application/json'
-  });
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
-    private systemCompanyService:SystemCompanyService,
-    private http:Http,
+    private systemCompanyService:SystemCompanyService
   ) { }
 
   ngOnInit() {
@@ -45,12 +39,13 @@ export class CompanyEditComponent implements OnInit {
         .then(res =>{
           if(res.errorCode == 0){
             this.companies = res.content;
-            //sessionStorage.setItem('companies',JSON.stringify(this.companies));
+            console.log(this.companies);
             let company_index = this.companies.findIndex((value,index)=>{
               return value.id == id;
             });
-            console.log(this.company);
+            console.log(company_index);
             this.company = this.companies[company_index];
+            console.log(this.company);
           }
         });
   }
@@ -61,15 +56,11 @@ export class CompanyEditComponent implements OnInit {
       this.addCompany()
     }else {
       console.log('编辑');
-      // this.editCompany(this.editId)
+      this.editCompany(this.editId)
     }
   }
 
   addCompany(){
-    // post 请求 必须是这个
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
-
     let new_company = {
       "name": this.company.name,
       "full_name": this.company.full_name,
@@ -80,20 +71,12 @@ export class CompanyEditComponent implements OnInit {
       "postcode": this.company.postcode,
       "address": this.company.address
     };
-    let body = "name=" + new_company.name+"&full_name="+new_company.full_name+
-      "&type=" + new_company.type+"&code="+new_company.code+
-      "&contacts=" + new_company.contacts+"&tel="+new_company.tel+
-      "&postcode=" + new_company.postcode+"&address="+new_company.address;
-    console.log(body);
-    this.http.post('http://test2.cn/v1/companies',body,options)
-      .subscribe(
-        res => {
-          console.log(res.json());
-          this.router.navigate(['/workentry/system/company']);
-        },
-        error => {
-          console.log(error.text());
-        })
+    this.systemCompanyService.addCompanies(new_company.name,new_company.full_name,new_company.type,
+      new_company.code,new_company.contacts,new_company.tel,new_company.postcode,new_company.address)
+      .subscribe(res => {
+        console.log(res.json());
+        this.router.navigate(['/workentry/system/company']);
+      })
   }
 
   editCompany(id:number){
@@ -107,25 +90,15 @@ export class CompanyEditComponent implements OnInit {
       "postcode": this.company.postcode,
       "address": this.company.address
     };
-
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
-    let body = "name=" + edit_company.name+"&full_name="+edit_company.full_name+
-      "&type=" + edit_company.type+"&code="+edit_company.code+
-      "&contacts=" + edit_company.contacts+"&tel="+edit_company.tel+
-      "&postcode=" + edit_company.postcode+"&address="+edit_company.address;
-
     let company_index = this.companies.findIndex((value,index)=>{
       return value.id == id;
     });
-    this.http.put('http://test2.cn/v1/companies/'+id,body,options)
-      .subscribe(
-        res => {
-          console.log(res.json());
-          this.router.navigate(['/workentry/system/company']);
-        },
-        error => {
-          console.log(error.text());
-        });
+
+    this.systemCompanyService.editCompanies(id,edit_company.name,edit_company.full_name,edit_company.type,
+      edit_company.code,edit_company.contacts, edit_company.tel,edit_company.postcode,edit_company.address)
+      .subscribe(res =>{
+        console.log(res.json());
+        this.router.navigate(['/workentry/system/company']);
+      })
   }
 }

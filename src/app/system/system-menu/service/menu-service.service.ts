@@ -14,4 +14,20 @@ export class MenuServiceService {
      .toPromise()
      .then(res =>res.json())
   }
+  addMenuList(sn,name,url,parent_id){
+    let body = "sn=" + sn+"&name="+name+
+      "&url=" + url+"&parent_id="+parent_id;
+    return this.http.post('http://test2.cn/v1/menus',body,{headers:this.headers})
+
+  }
+
+  editMenuList(id,sn,name,url,parent_id){
+    let body = "sn=" + sn+"&name="+name+
+      "&url=" + url+"&parent_id="+parent_id;;
+    return this.http.put('http://test2.cn/v1/menus/'+id,body,{headers:this.headers})
+  }
+
+  delMenuList(id){
+    return this.http.delete('http://test2.cn/v1/menus/'+id,{headers:this.headers})
+  }
 }

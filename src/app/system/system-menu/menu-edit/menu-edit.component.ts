@@ -32,24 +32,14 @@ export class MenuEditComponent implements OnInit {
   }
 
   getMenuById(id:number){
-    let ss_menu = sessionStorage.getItem('menu');
-    if(ss_menu){
-      this.menuList = JSON.parse(ss_menu);
-      this.menu = this.menuList.find((value,index)=>{
-        return value.id == id;
-      })
-    }else {
       this.menuServiceService.getMenuList()
         .then(res =>{
           if(res.errorCode == 0){
             this.menuList = res.content;
-            sessionStorage.setItem('menu',JSON.stringify(this.menuList));
             this.menu = this.menuList.find((value,index) =>{
               return value.id == id;
             })
-          }
-        })
-    }
+     }})
   }
 
 
@@ -68,12 +58,7 @@ export class MenuEditComponent implements OnInit {
       "url":this.menu.url,
       "parent_id": this.menu.parent_id
     };
-
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
-    let body = "sn=" + add_menu.sn+"&name="+add_menu.name+
-      "&url=" + add_menu.url+"&parent_id="+add_menu.parent_id;
-    this.http.post('http://test2.cn/v1/menus/',body,options)
+    this.menuServiceService.addMenuList(add_menu.sn,add_menu.name,add_menu.url,add_menu.parent_id)
       .subscribe(
         res => {
           console.log(res.json());
@@ -91,12 +76,7 @@ export class MenuEditComponent implements OnInit {
       "url":this.menu.url,
       "parent_id": this.menu.parent_id
     };
-
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
-    let body = "sn=" + edit_menu.sn+"&name="+edit_menu.name+
-      "&url=" + edit_menu.url+"&parent_id="+edit_menu.parent_id;
-    this.http.put('http://test2.cn/v1/menus/',body,options)
+    this.menuServiceService.editMenuList(id,edit_menu.sn,edit_menu.name,edit_menu.url,edit_menu.parent_id)
       .subscribe(
         res => {
           console.log(res.json());

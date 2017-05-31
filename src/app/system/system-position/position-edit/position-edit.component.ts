@@ -33,24 +33,15 @@ export class PositionEditComponent implements OnInit {
   }
 
   getDutyById(id:number){
-    let ss_duties = sessionStorage.getItem('duties');
-    if(ss_duties){
-      this.duties = JSON.parse(ss_duties);
-      this.duty = this.duties.find((value,index)=>{
-        return value.id == id;
-      })
-    }else {
-      this.positionServiceService.getDuties()
-        .then(res =>{
-          if(res.errorCode == 0){
-            this.duties = res.content;
-            sessionStorage.setItem('duties',JSON.stringify(this.duties));
-            this.duty = this.duties.find((value,index) =>{
-               return value.id == id;
-            })
-          }
-        })
-    }
+    this.positionServiceService.getDuties()
+      .then(res =>{
+        if(res.errorCode == 0){
+          this.duties = res.content;
+          this.duty = this.duties.find((value,index) =>{
+            return value.id == id;
+          })
+        }})
+
   }
 
   submitForm(){
@@ -69,15 +60,11 @@ export class PositionEditComponent implements OnInit {
       "company_id": this.duty.company_id
     };
 
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
-    let body = "sn=" + add_duty.sn+"&name="+add_duty.name+
-      "&parent_id=" + add_duty.parent_id+"&company_id="+add_duty.company_id;
-    this.http.post('http://test2.cn/v1/duties/',body,options)
+    this.positionServiceService.addDuties(add_duty.sn,add_duty.name,add_duty.parent_id,add_duty.company_id)
       .subscribe(
         res => {
           console.log(res.json());
-          this.router.navigate(['/workentry/system/position']);
+          this.router.navigate(['/workentry/system/position'])
         },
         error => {
           console.log(error.text());
@@ -93,15 +80,11 @@ export class PositionEditComponent implements OnInit {
       "company_id": this.duty.company_id
     };
 
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({ headers: headers });
-    let body = "sn=" + edit_duty.sn+"&name="+edit_duty.name+
-      "&parent_id=" + edit_duty.parent_id+"&company_id="+edit_duty.company_id;
-    this.http.put('http://test2.cn/v1/duties/',body,options)
+    this.positionServiceService.editDuties(id,edit_duty.sn,edit_duty.name,edit_duty.parent_id,edit_duty.company_id)
       .subscribe(
         res => {
           console.log(res.json());
-          this.router.navigate(['/workentry/system/position']);
+          this.router.navigate(['/workentry/system/position'])
         },
         error => {
           console.log(error.text());

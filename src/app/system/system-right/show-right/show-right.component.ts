@@ -38,13 +38,6 @@ export class ShowRightComponent implements OnInit {
   }
 
   getDutyMenuById(id:number){
-    let ss_right = sessionStorage.getItem('right');
-    if(ss_right){
-      this.rights = JSON.parse(ss_right);
-      this.right = this.rights.find((value,index)=>{
-        return value.id == id;
-      })
-    }else {
       this.rightServiceService.getRights()
         .then(res =>{
           if(res.errorCode == 0){
@@ -55,7 +48,6 @@ export class ShowRightComponent implements OnInit {
             })
           }
         })
-    }
   }
 
   goBack(){

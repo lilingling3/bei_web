@@ -1,6 +1,6 @@
 import { LoginComponent } from './login/login.component';
 import { AppErrorComponent } from './error/app.error.component';
-
+import { ZtreeDemoComponent } from './z-tree/z-tree.component';
 export const appRoutes = [
 	{
 		path: '',
@@ -15,6 +15,10 @@ export const appRoutes = [
 	{
 		path: 'login',
 		component: LoginComponent
+	},
+	{
+		path: 'tree',
+		component: ZtreeDemoComponent
 	},
 	{
 		path: 'workentry',

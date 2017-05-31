@@ -2,7 +2,7 @@ import { Component, OnInit , OnChanges} from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { SystemCompanyService } from './service/system-company.service';
-import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
+
 @Component({
   selector: 'app-system-company',
   templateUrl: './system-company.component.html',
@@ -10,17 +10,12 @@ import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angula
 })
 export class SystemCompanyComponent implements OnInit {
   private companies;
-  private URL_COMPANY = 'http://test2.cn/v1/companies';
-  private headers = new Headers({
-    'Content-Type':'application/x-www-form-urlencoded',
-    // 'Accept': 'application/json'
-  });
   private company;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,
     private systemCompanyService:SystemCompanyService,
-    private http:Http
+
   ) { }
 
   ngOnInit() {
@@ -51,16 +46,11 @@ export class SystemCompanyComponent implements OnInit {
 
       this.company = this.companies[indexCompany];
 
-      let headers = new Headers({ 'content-type':'application/x-www-form-urlencoded'});
-      let options = new RequestOptions({ headers: headers });
       if(confirm(`确定删除id为${id}吗`)){
-          const url = `${this.URL_COMPANY}/${id}`;
-          this.http.delete(url,options)
-            .toPromise()
-            .then(()=>{
-              console.log('llll');
-              this.companies = this.companies.filter(company =>company!=this.company);
-            })
+        this.systemCompanyService.delCompanies(id)
+          .subscribe(res =>{
+            console.log(res.json());
+          })
       }
  }
 

@@ -20,12 +20,14 @@ import { AppService } from './server/app.service';
 import { TopMenuService } from './server/top-menu.service';
 import { commonsInstances} from './models/Acommons';
 import { AppErrorComponent } from './error/app.error.component';
+import { ZtreeDemoComponent } from './z-tree/z-tree.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoadingButton,
     AppErrorComponent,
+    ZtreeDemoComponent,
 ],
   imports: [
     ChartsModule,

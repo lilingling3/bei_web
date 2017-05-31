@@ -16,4 +16,27 @@ export class SystemCompanyService {
       .toPromise()
       .then(res => res.json())
   }
+
+  addCompanies(name,full_name,type,code,contacts,tel,postcode,address){
+    let body = "name=" + name+"&full_name="+full_name+
+      "&type=" + type+"&code="+code+
+      "&contacts=" + contacts+"&tel="+tel+
+      "&postcode=" + postcode+"&address="+address;
+    return this.http.post('http://test2.cn/v1/companies',body,{headers:this.headers})
+
+  }
+
+  editCompanies(id,name,full_name,type,code,contacts,tel,postcode,address){
+    let body = "name=" + name+"&full_name="+full_name+
+      "&type=" + type+"&code="+code+
+      "&contacts=" + contacts+"&tel="+tel+
+      "&postcode=" + postcode+"&address="+address;
+
+    return this.http.put('http://test2.cn/v1/companies/'+id,body,{headers:this.headers})
+  }
+
+  delCompanies(id){
+    return this.http.delete('http://test2.cn/v1/companies/'+id,{headers:this.headers})
+  }
+
 }

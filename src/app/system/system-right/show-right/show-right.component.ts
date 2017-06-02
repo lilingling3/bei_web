@@ -26,19 +26,24 @@ export class ShowRightComponent implements OnInit {
       this.showId = parmas['id'];
       console.log(this.showId);
       this.getDutyMenuById(this.showId);
+      console.log('kkkkk');
     });
 
     console.log(this.right);
 
-    this.roles = this.right.duty_menu;
+    // if(!!this.right){
+    //   this.roles = this.right.duty_menu;
+    //
+    //   console.log(this.roles);
+    //
+    //   this.roles? this.hidden = false:this.hidden = true;
+    //   console.log(this.hidden);
+    // }
 
-    console.log(this.roles);
-
-    this.roles? this.hidden = false:this.hidden = true;
-    console.log(this.hidden);
   }
 
   getDutyMenuById(id:number){
+    console.log(id);
       this.rightServiceService.getRights()
         .then(res =>{
           if(res.errorCode == 0){
@@ -51,6 +56,13 @@ export class ShowRightComponent implements OnInit {
             });
 
             console.log(this.right);
+
+              this.roles = this.right.duty_menu;
+
+              console.log(this.roles);
+
+              this.roles? this.hidden = false:this.hidden = true;
+              console.log(this.hidden);
           }
         })
   }

@@ -21,7 +21,7 @@ export class SystemDictionaryService {
 
   //  不带分页
   public getWorkBooks(){
-    return this.http.get("http://test2.cn/v1/wordbook")
+    return this.http.get("http://test2.cn/wordbook")
       .toPromise()
       .then(res => res.json());
     //return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/system/dictionary");
@@ -31,17 +31,17 @@ export class SystemDictionaryService {
     let body = "sn=" + sn+"&name="+name+
       "&value=" + value+"&enabled="+enabled+
       "&parentId="+parentId;
-    return this.http.post('http://test2.cn/v1/wordbooks',body,{headers:this.headers});
+    return this.http.post('http://test2.cn/wordbooks',body,{headers:this.headers});
   }
 
-  editWorkBooks(id,name,sn,value,enabled,parentId){
+  editWorkBooks(id,sn,name,value,enabled,parentId){
     let body = "sn=" + sn+"&name="+name+
       "&value=" + value+"&enabled="+enabled+
       "&parentId="+parentId;
-    return this.http.put('http://test2.cn/v1/wordbooks/'+id,body,{headers:this.headers})
+    return this.http.put('http://test2.cn/wordbooks/'+id,body,{headers:this.headers})
   }
 
   delWorkBooks(id){
-    return this.http.delete('http://test2.cn/v1/wordbooks/'+id,{headers:this.headers})
+    return this.http.delete('http://test2.cn/wordbooks/'+id,{headers:this.headers})
   }
 }

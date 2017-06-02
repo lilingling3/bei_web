@@ -48,6 +48,7 @@ export class SystemMenuComponent implements OnInit {
       this.menuServiceService.delMenuList(id)
         .subscribe(res =>{
           console.log(res.json());
+          this.menuList.splice(indexMenu,1);
         })
     }
   }

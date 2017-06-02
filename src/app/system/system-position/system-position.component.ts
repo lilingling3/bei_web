@@ -38,10 +38,10 @@ export class SystemPositionComponent implements OnInit {
       return this.positionServiceService.getDuties()
         .then(res =>{
             console.log(res);
-            //this.duties = res.content;
-            console.log('kkkkkk');
-            this.duties = res;
-          $.fn.zTree.init($("#ztree"),this.setting,this.duties);
+            this.duties = res.content;
+          //   console.log('kkkkkk');
+          //   this.duties = res;
+          // $.fn.zTree.init($("#ztree"),this.setting,this.duties);
         })
   }
 
@@ -61,6 +61,7 @@ export class SystemPositionComponent implements OnInit {
       this.positionServiceService.delDuties(id)
         .subscribe(res =>{
           console.log(res.json());
+          this.duties.splice(indexDuty,1);
         })
     }
   }

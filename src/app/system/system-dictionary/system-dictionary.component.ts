@@ -94,6 +94,7 @@ public getWorkBookList() {
       this.systemDictionaryService.delWorkBooks(id)
         .subscribe(res =>{
           console.log(res.json());
+          this.workBooks.splice(indexWorkBooks,1);
         })
     }
 }

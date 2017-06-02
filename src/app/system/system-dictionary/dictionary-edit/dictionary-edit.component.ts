@@ -41,11 +41,11 @@ export class DictionaryEditComponent implements OnInit {
         if(res.errorCode == 0){
           this.workBooks = res.content;
           console.log(this.workBooks);
-          let company_index = this.workBooks.findIndex((value,index)=>{
+          let work_index = this.workBooks.findIndex((value,index)=>{
             return value.id == id;
           });
-          console.log(company_index);
-          this.work = this.workBooks[company_index];
+          console.log(work_index);
+          this.work = this.workBooks[work_index];
           console.log(this.work);
         }
       });
@@ -68,6 +68,7 @@ export class DictionaryEditComponent implements OnInit {
       "enabled": this.work.enabled,
       "parentId":this.work.parentId
     };
+    console.log(new_dictionary);
     this.systemDictionaryService.addWorkBooks(new_dictionary.sn,new_dictionary.name,
       new_dictionary.value,new_dictionary.enabled,new_dictionary.parentId)
       .subscribe(res => {
@@ -80,16 +81,17 @@ export class DictionaryEditComponent implements OnInit {
 
     let edit_dictionary = {
       "sn": this.work.sn,
-      "name": this.work.sn,
+      "name": this.work.name,
       "value": this.work.value,
       "enabled": this.work.enabled,
       "parentId":this.work.parentId,
     };
 
+    console.log(edit_dictionary);
     this.systemDictionaryService.editWorkBooks(id,edit_dictionary.sn,edit_dictionary.name,
       edit_dictionary.value,edit_dictionary.enabled,edit_dictionary.parentId)
       .subscribe(res => {
-        console.log(res.json());
+        console.log(res);
         this.router.navigate(['/workentry/system/dictionary']);
       })
 

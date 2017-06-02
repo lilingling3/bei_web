@@ -23,7 +23,9 @@ export class SystemRightComponent implements OnInit {
   getRights(){
       this.rightServiceService.getRights()
         .then(res =>{
+          console.log(res);
           this.rights = res.content;
+          console.log(this.rights);
         })
   }
 
@@ -47,6 +49,7 @@ export class SystemRightComponent implements OnInit {
       this.rightServiceService.delRights(id)
         .subscribe(res =>{
           console.log(res.json());
+          this.rights.splice(indexRight,1);
         })
     }
 

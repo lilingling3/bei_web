@@ -50,6 +50,7 @@ export class SystemCompanyComponent implements OnInit {
         this.systemCompanyService.delCompanies(id)
           .subscribe(res =>{
             console.log(res.json());
+            this.companies.splice(indexCompany,1);
           })
       }
  }

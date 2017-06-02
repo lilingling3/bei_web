@@ -12,7 +12,7 @@ export class SystemCompanyService {
   ) { }
 
   public getCompanies(){
-    return this.http.get('http://test2.cn/v1/company')
+    return this.http.get('http://test2.cn/company')
       .toPromise()
       .then(res => res.json())
   }
@@ -22,7 +22,7 @@ export class SystemCompanyService {
       "&type=" + type+"&code="+code+
       "&contacts=" + contacts+"&tel="+tel+
       "&postcode=" + postcode+"&address="+address;
-    return this.http.post('http://test2.cn/v1/companies',body,{headers:this.headers})
+    return this.http.post('http://test2.cn/companies',body,{headers:this.headers})
 
   }
 
@@ -32,11 +32,11 @@ export class SystemCompanyService {
       "&contacts=" + contacts+"&tel="+tel+
       "&postcode=" + postcode+"&address="+address;
 
-    return this.http.put('http://test2.cn/v1/companies/'+id,body,{headers:this.headers})
+    return this.http.put('http://test2.cn/companies/'+id,body,{headers:this.headers})
   }
 
   delCompanies(id){
-    return this.http.delete('http://test2.cn/v1/companies/'+id,{headers:this.headers})
+    return this.http.delete('http://test2.cn/companies/'+id,{headers:this.headers})
   }
 
 }

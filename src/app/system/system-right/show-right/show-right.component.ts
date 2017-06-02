@@ -24,17 +24,18 @@ export class ShowRightComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(parmas =>{
       this.showId = parmas['id'];
-      this.getDutyMenuById(this.showId)
+      console.log(this.showId);
+      this.getDutyMenuById(this.showId);
     });
 
-    if(this.right.duty_menu){
-      this.hidden = false
-    }else {
-      this.hidden = true
-    }
-    console.log(this.hidden);
+    console.log(this.right);
+
     this.roles = this.right.duty_menu;
+
     console.log(this.roles);
+
+    this.roles? this.hidden = false:this.hidden = true;
+    console.log(this.hidden);
   }
 
   getDutyMenuById(id:number){
@@ -42,10 +43,14 @@ export class ShowRightComponent implements OnInit {
         .then(res =>{
           if(res.errorCode == 0){
             this.rights = res.content;
-            sessionStorage.setItem('right',JSON.stringify(this.rights));
-            this.right = this.right.find((value,index) =>{
+
+            console.log(this.rights);
+
+            this.right = this.rights.find((value,index) =>{
               return value.id == id;
-            })
+            });
+
+            console.log(this.right);
           }
         })
   }
@@ -53,4 +58,5 @@ export class ShowRightComponent implements OnInit {
   goBack(){
     this.location.back()
   }
+
 }

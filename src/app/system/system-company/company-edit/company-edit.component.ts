@@ -80,6 +80,7 @@ export class CompanyEditComponent implements OnInit {
   }
 
   editCompany(id:number){
+    console.log('111');
     let edit_company = {
       "name": this.company.name,
       "full_name": this.company.full_name,
@@ -93,11 +94,11 @@ export class CompanyEditComponent implements OnInit {
     let company_index = this.companies.findIndex((value,index)=>{
       return value.id == id;
     });
-
+    console.log('222');
     this.systemCompanyService.editCompanies(id,edit_company.name,edit_company.full_name,edit_company.type,
       edit_company.code,edit_company.contacts, edit_company.tel,edit_company.postcode,edit_company.address)
       .subscribe(res =>{
-        console.log(res.json());
+        console.log(res);
         this.router.navigate(['/workentry/system/company']);
       })
   }

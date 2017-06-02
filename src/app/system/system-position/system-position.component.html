@@ -1,39 +1,39 @@
-<!--<div class="row">-->
-  <!--<div class="col-sm-12">-->
+<div class="row">
+  <div class="col-sm-12">
 
-    <!--<button class="btn btn-default" (click)="goToEdit()">添加职位管理</button>-->
+    <button class="btn btn-default" (click)="goToEdit()">添加职位管理</button>
 
-    <!--<table class="table table-condensed">-->
-      <!--<thead>-->
+    <table class="table table-condensed">
+      <thead>
 
-      <!--<tr>-->
-        <!--<th>id</th>-->
-        <!--<th>sn</th>-->
-        <!--<th>name</th>-->
-        <!--<th>parent_id</th>-->
-        <!--<th>company_id</th>-->
-        <!--<th>操作</th>-->
-      <!--</tr>-->
-      <!--</thead>-->
-      <!--<tbody>-->
-      <!--<tr *ngFor="let duty of duties">-->
-        <!--<td>{{duty.id}}</td>-->
-        <!--<td>{{duty.sn}}</td>-->
-        <!--<td>{{duty.name}}</td>-->
-        <!--<td>{{duty.parent_id}}</td>-->
-        <!--<td>{{duty.company_id}}</td>-->
-        <!--<td>-->
-          <!--<a href="javascript:void(0);"  (click)="update(duty.id)">修改</a>-->
-          <!--<a href="javascript:void(0);"  (click)="delItem(duty.id)">删除</a>-->
-        <!--</td>-->
-      <!--</tr>-->
+      <tr>
+        <th>id</th>
+        <th>sn</th>
+        <th>name</th>
+        <th>parent_id</th>
+        <th>company_id</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let duty of duties">
+        <td>{{duty.id}}</td>
+        <td>{{duty.sn}}</td>
+        <td>{{duty.name}}</td>
+        <td>{{duty.parent_id}}</td>
+        <td>{{duty.company_id}}</td>
+        <td>
+          <a href="javascript:void(0);"  (click)="update(duty.id)">修改</a>
+          <a href="javascript:void(0);"  (click)="delItem(duty.id)">删除</a>
+        </td>
+      </tr>
 
-      <!--</tbody>-->
+      </tbody>
 
-    <!--</table>-->
+    </table>
 
-  <!--</div>-->
-<!--</div>-->
+  </div>
+</div>
 
-<ul id="ztree" class="ztree"></ul>
+<!--<ul id="ztree" class="ztree"></ul>-->
 

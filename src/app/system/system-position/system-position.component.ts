@@ -12,8 +12,8 @@ declare var $: any;
   styleUrls: ['./system-position.component.css']
 })
 export class SystemPositionComponent implements OnInit {
-  private duties;
-  private duty;
+  public duties;
+  public duty;
   private setting = {
     data: {
       simpleData: {

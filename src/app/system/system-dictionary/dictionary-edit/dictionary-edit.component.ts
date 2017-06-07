@@ -9,11 +9,11 @@ import { SystemDictionaryService } from '../service/system-dictionary.service';
 })
 export class DictionaryEditComponent implements OnInit {
 
-  private isAdd:boolean;
-  private title:string;
-  private editId:number;
-  private work:any = {};
-  private workBooks:any = {};
+  public isAdd:boolean;
+  public title:string;
+  public editId:number;
+  public work:any = {};
+  public workBooks:any = {};
 
   constructor(
     private router:Router,

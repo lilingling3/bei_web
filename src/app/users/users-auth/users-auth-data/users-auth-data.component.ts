@@ -9,7 +9,7 @@ import { UsersAuthService } from './services/users-auth-data.service';
 })
 
 export class UsersAuthDataComponent implements OnInit {
-  private authUserList;
+  public authUserList;
 
   constructor(private usersAuthService: UsersAuthService) {
   }

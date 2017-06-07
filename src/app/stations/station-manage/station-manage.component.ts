@@ -8,7 +8,7 @@ import { StationService } from '../service/station.service';
   styleUrls: ['./station-manage.component.css']
 })
 export class StationManageComponent implements OnInit {
-  private stationList;
+  public stationList;
   public maxSize:number = 5;// 最大页码数量 多余有省略号
   public itemsPerPage:number=5;// 限制一页显示多少个
   public totalItems:number;// 总页数

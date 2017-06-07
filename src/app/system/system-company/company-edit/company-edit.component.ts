@@ -7,11 +7,11 @@ import { SystemCompanyService } from '../service/system-company.service';
   styleUrls: ['./company-edit.component.css']
 })
 export class CompanyEditComponent implements OnInit {
-  private isAdd:boolean;
-  private title:string;
-  private editId:number;
-  private company:any ={};
-  private companies:any ={};
+  public isAdd:boolean;
+  public title:string;
+  public editId:number;
+  public company:any ={};
+  public companies:any ={};
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,

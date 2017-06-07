@@ -8,12 +8,12 @@ import { RightServiceService } from '../service/right-service.service';
   styleUrls: ['./edit-right.component.css']
 })
 export class EditRightComponent implements OnInit {
-  private isAdd:boolean;
-  private title:string;
-  private editId:number;
-  private rights:any ={};
-  private right:any ={};
-  private roles:any;
+  public isAdd:boolean;
+  public title:string;
+  public editId:number;
+  public rights:any ={};
+  public right:any ={};
+  public roles:any;
 
   constructor(
     private router:Router,

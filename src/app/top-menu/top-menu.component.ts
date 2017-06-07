@@ -10,9 +10,9 @@ import {error} from "util";
   styleUrls: ['./top-menu.component.css']
 })
 export class TopMenuComponent {
-  private id = 1;
+  public id = 1;
   public user;
-  private navLists;
+  public navLists;
   constructor(
     private commonsInstances : commonsInstances,
     private topMenuService : TopMenuService

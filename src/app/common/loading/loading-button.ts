@@ -11,7 +11,7 @@ export class LoadingButton {
 
     @Output() action = new EventEmitter();
 
-    private apply = function(){
+    public apply = function(){
         this.action.emit();
     }
 }

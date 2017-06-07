@@ -5,7 +5,7 @@ import { ActivatedRoute, Params } from "@angular/router";
     templateUrl: './app.error.component.html'
 })
 export class AppErrorComponent {
-    private errorMessage:string;
+    public errorMessage:string;
 
     constructor(@Inject(ActivatedRoute) private route:ActivatedRoute) {
         let vm = this;

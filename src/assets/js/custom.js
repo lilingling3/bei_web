@@ -2,27 +2,17 @@
  * Created by linlin on 2017/4/17.
  */
 $(function(){
-
+  // 当前 主机名 + 端口号
+  console.log(location.host);
   console.log('custom.js 执行了');
   var reg=/\?/;
-  var current_url = reg.test(window.location.href.split('http://localhost:4200/')[1])
-    ?window.location.href.split('http://localhost:4200/')[1].split('?')[0]
-    :window.location.href.split('http://localhost:4200/')[1];
-
-  console.log("current_url=");
+  var current_url = reg.test(window.location.href.split(location.host+'/')[1])
+    ?window.location.href.split(location.host+'/')[1].split('?')[0]
+    :window.location.href.split(location.host+'/')[1];
   console.log(current_url);
-
   $top_menu = $(".top-nav");
   var router_begin = current_url.match(/#\/workentry\/\w+\/\w+/);
-  //console.log("router_begin=" + router_begin);
-  //console.log($(".top-nav .test").html());
-
   var $href = $top_menu.find('a[href^="' + router_begin + '"]');
-  // var $href = $top_menu.find('a[href="' + current_url + '"]');
-  //var router = $top_menu.children('my-a').attr('href');
-  //console.log(router);
-  //console.log("$href=");
-  //console.log($href);
   $href.parents('li').addClass('active');
   $href.parents('.tab-pane').addClass('active in');
 
@@ -37,26 +27,9 @@ $(function(){
     $($home).siblings("li").find(".active").removeClass("active");
     $($home).siblings("li").attr("aria-expanded","false");
     $(".tab-pane").removeClass("active in");
-
-    //console.log("首页的li 单击响应");
     changeBread();
-  })
-  /*  $("#home").parent("li").hover(function(){
+  });
 
-   $(this).siblings("li.active").find(".tab-pane").removeClass("active in");
-   console.log( $(this));
-   if(!$(this).hasClass("active")){
-   $(this).addClass("active mhover");
-   $(".bread").addClass("bread-mt");
-   }
-   },function(){
-
-   $(this).siblings("li.active").find(".tab-pane").addClass("active in");
-   if($("#home").parent("li").hasClass("mhover")&& $("#home").parent("li").hasClass("active")){
-   $("#home").parent("li").removeClass("mhover active")
-   $(".bread").removeClass("bread-mt");
-   }
-   });*/
 
   $(".f-nav > a ").click(function(){
     //console.log("一级菜单单击响应");

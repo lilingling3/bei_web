@@ -8,11 +8,11 @@ import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angula
   styleUrls: ['./menu-edit.component.css']
 })
 export class MenuEditComponent implements OnInit {
-  private isAdd:boolean;
-  private title:string;
-  private editId:number;
-  private menu:any ={};
-  private menuList:any ={};
+  public isAdd:boolean;
+  public title:string;
+  public editId:number;
+  public menu:any ={};
+  public menuList:any ={};
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,

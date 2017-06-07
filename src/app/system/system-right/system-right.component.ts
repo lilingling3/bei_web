@@ -8,8 +8,8 @@ import { RightServiceService } from './service/right-service.service';
   styleUrls: ['./system-right.component.css']
 })
 export class SystemRightComponent implements OnInit {
-  private rights;
-  private right;
+  public rights;
+  public right;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,

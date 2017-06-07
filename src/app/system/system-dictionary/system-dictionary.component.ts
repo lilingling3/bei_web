@@ -8,7 +8,7 @@ import { SystemDictionaryService } from './service/system-dictionary.service';
   styleUrls: ['./system-dictionary.component.css']
 })
 export class SystemDictionaryComponent implements OnInit{
-  private workBookList;
+  public workBookList;
   public maxSize:number = 5;// 最大数量
   public itemsPerPage:number=8;// 显示数量
   public totalItems:number;// 总页数

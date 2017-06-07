@@ -9,8 +9,8 @@ import { SystemCompanyService } from './service/system-company.service';
   styleUrls: ['./system-company.component.css']
 })
 export class SystemCompanyComponent implements OnInit {
-  private companies;
-  private company;
+  public companies;
+  public company;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,

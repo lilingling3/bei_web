@@ -8,11 +8,11 @@ import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angula
   styleUrls: ['./position-edit.component.css']
 })
 export class PositionEditComponent implements OnInit {
-  private isAdd:boolean;
-  private title:string;
-  private editId:number;
-  private duty:any ={};
-  private duties:any ={};
+  public isAdd:boolean;
+  public title:string;
+  public editId:number;
+  public duty:any ={};
+  public duties:any ={};
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,

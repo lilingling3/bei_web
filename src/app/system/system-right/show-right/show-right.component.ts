@@ -8,12 +8,12 @@ import { Location } from '@angular/common';
   styleUrls: ['./show-right.component.css']
 })
 export class ShowRightComponent implements OnInit {
-  private hidden:boolean;
-  private title:string;
-  private showId:number;
-  private rights:any ={};
-  private right:any ={};
-  private roles:any;
+  public hidden:boolean;
+  public title:string;
+  public showId:number;
+  public rights:any ={};
+  public right:any ={};
+  public roles:any;
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,

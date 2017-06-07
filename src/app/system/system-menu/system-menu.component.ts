@@ -8,8 +8,8 @@ import { MenuServiceService } from './service/menu-service.service';
   styleUrls: ['./system-menu.component.css']
 })
 export class SystemMenuComponent implements OnInit {
-  private menuList;
-  private menu;
+  public menuList;
+  public menu;
   constructor(
     public router:Router,
     public activatedRoute:ActivatedRoute,

@@ -13,11 +13,11 @@ import AppConstants  from "../models/app.constants";
 })
 
 export class LoginComponent implements OnInit {
-  private user;
-  private error = '';
-  private isLoading = false;
+  public user;
+  public error = '';
+  public isLoading = false;
   private codetimer=60;
-  private getCodeSuccess=false;
+  public getCodeSuccess=false;
   private getCodeTimer;
   private iscode=false;
 

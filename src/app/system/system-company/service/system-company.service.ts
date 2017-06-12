@@ -12,31 +12,30 @@ export class SystemCompanyService {
   ) { }
 
   public getCompanies(){
-    return this.http.get('http://test2.cn/company')
+    return this.http.get('http://t.api.jiaab.com/company')
       .toPromise()
       .then(res => res.json())
   }
 
-  addCompanies(name,full_name,type,code,contacts,tel,postcode,address){
-    let body = "name=" + name+"&full_name="+full_name+
+  addCompanies(name,fullName,type,code,contacts,tel,postcode,address){
+    let body = "name=" + name+"&fullName="+fullName+
       "&type=" + type+"&code="+code+
       "&contacts=" + contacts+"&tel="+tel+
       "&postcode=" + postcode+"&address="+address;
-    return this.http.post('http://test2.cn/companies',body,{headers:this.headers})
-
+    return this.http.post('http://t.api.jiaab.com/companies',body,{headers:this.headers})
   }
 
-  editCompanies(id,name,full_name,type,code,contacts,tel,postcode,address){
-    let body = "name=" + name+"&full_name="+full_name+
+  editCompanies(id,name,fullName,type,code,contacts,tel,postcode,address){
+    let body = "name=" + name+"&fullName="+fullName+
       "&type=" + type+"&code="+code+
       "&contacts=" + contacts+"&tel="+tel+
       "&postcode=" + postcode+"&address="+address;
 
-    return this.http.put('http://test2.cn/companies/'+id,body,{headers:this.headers})
+    return this.http.put('http://t.api.jiaab.com/companies/'+id,body,{headers:this.headers})
   }
 
   delCompanies(id){
-    return this.http.delete('http://test2.cn/companies/'+id,{headers:this.headers})
+    return this.http.delete('http://t.api.jiaab.com/companies/'+id,{headers:this.headers})
   }
 
 }

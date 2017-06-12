@@ -12,23 +12,27 @@ export class RightServiceService {
   ) { }
 
   public getRights(){
-    return this.http.get('http://test2.cn/duty/menu')
+    return this.http.get('http://t.api.jiaab.com/duty/menu')
       .toPromise()
       .then(res => res.json())
   }
 
   // 修改
-  public editRights(id,body){
-    return this.http.put("http://test2.cn/dutymenu/"+id,body,{headers:this.headers});
+  public editRights(dutyMenuId,dutyId,menuId,action){
+    let body = "dutyId=" + dutyId+"&menuId="+menuId+
+      "&action=" + action;
+    return this.http.put("http://t.api.jiaab.com/duties/" + dutyMenuId + "/menu",body,{headers:this.headers});
   }
   // 删除
   public delRights(id){
-    return this.http.delete("http://test2.cn/dutymenu/"+id)
+    return this.http.delete("http://t.api.jiaab.com/duties/" + id + "/menu")
   }
 
   // 新建
-  public addRights(body){
-    return this.http.post("http://test2.cn/dutymenu",body,{headers:this.headers});
+  public addRights(dutyId,menuId,action){
+    let body = "dutyId=" + dutyId+"&menuId="+menuId+
+      "&action=" + action;
+    return this.http.post("http://t.api.jiaab.com/duties/menus",body,{headers:this.headers});
   }
 
 }

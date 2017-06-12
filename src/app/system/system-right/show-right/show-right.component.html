@@ -1,22 +1,29 @@
 <div class="row">
   <div class="col-sm-12">
-    <div [ngClass]="{hidden:!hidden}">没有duty_menu数据</div>
     <button (click)="goBack()" class="btn btn-default"> 返回</button>
+    <br>
+    <div [ngClass]="{hidden:!hidden}">没有duty_menu数据</div>
+    <br>
+    <button class="btn btn-default" (click)="addRight()">添加duty_menu数据</button>
+
     <table class="table table-condensed" [ngClass]="{hidden: hidden}">
       <thead>
       <tr>
+        <th>dutyMenuId</th>
         <th>dutyId</th>
-        <th>name</th>
-        <th>id</th>
+        <th>menuName</th>
+        <th>menuId</th>
         <th>parentId</th>
         <th>action</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let role of roles">
+        <td>{{role.dutyMenuId}}</td>
         <td>{{role.dutyId}}</td>
-        <td>{{role.name}}</td>
-        <td>{{role.id}}</td>
+        <td>{{role.menuName}}</td>
+        <td>{{role.menuId}}</td>
         <td>{{role.parentId}}</td>
         <td>
           <span *ngFor="let action of role.action">
@@ -25,6 +32,10 @@
             <span *ngIf="action == 47">删除</span>
             <span *ngIf="action == 48">编辑</span>
           </span>
+        </td>
+        <td>
+           <a href="javascript:void(0);"  (click)="delItem(role.dutyMenuId)">删除</a>
+          <a href="javascript:void(0);"  (click)="updateRight(role.dutyMenuId)">编辑</a>
         </td>
       </tr>
 

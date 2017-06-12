@@ -62,11 +62,11 @@ export class DictionaryEditComponent implements OnInit {
 
   addDictionary(){
     let new_dictionary = {
-      "sn": this.work.sn,
+      "sn": parseInt(this.work.sn),
       "name": this.work.name,
-      "value": this.work.value,
-      "enabled": this.work.enabled,
-      "parentId":this.work.parentId
+      "value": parseInt(this.work.value),
+      "enabled": parseInt(this.work.enabled),
+      "parentId":parseInt(this.work.parentId)
     };
     console.log(new_dictionary);
     this.systemDictionaryService.addWorkBooks(new_dictionary.sn,new_dictionary.name,

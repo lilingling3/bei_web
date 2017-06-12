@@ -53,10 +53,10 @@ export class MenuEditComponent implements OnInit {
 
   addMenu(){
     let add_menu = {
-      "sn": this.menu.sn,
+      "sn": parseInt(this.menu.sn),
       "name": this.menu.name,
       "url":this.menu.url,
-      "parent_id": this.menu.parent_id
+      "parent_id": parseInt(this.menu.parent_id)
     };
     this.menuServiceService.addMenuList(add_menu.sn,add_menu.name,add_menu.url,add_menu.parent_id)
       .subscribe(

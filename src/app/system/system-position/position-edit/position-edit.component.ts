@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from  '@angular/router';
 import { PositionServiceService } from '../service/position-service.service';
 import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
+
 @Component({
   selector: 'app-position-edit',
   templateUrl: './position-edit.component.html',
@@ -54,12 +55,13 @@ export class PositionEditComponent implements OnInit {
 
   addDuty(){
     let add_duty = {
-      "sn": this.duty.sn,
+      "sn": parseInt(this.duty.sn),
       "name": this.duty.name,
-      "parent_id": this.duty.parent_id,
-      "company_id": this.duty.company_id
+      "parent_id": parseInt(this.duty.parent_id),
+      "company_id": parseInt(this.duty.company_id)
     };
 
+    console.log(add_duty);
     this.positionServiceService.addDuties(add_duty.sn,add_duty.name,add_duty.parent_id,add_duty.company_id)
       .subscribe(
         res => {

@@ -12,7 +12,7 @@ export class PositionServiceService {
   ) { }
 
   getDuties(){
-    return this.http.get('http://test2.cn/duty')
+    return this.http.get('http://t.api.jiaab.com/duty')
       .toPromise()
       .then(res => res.json())
   }
@@ -23,21 +23,21 @@ export class PositionServiceService {
   //     .then(res => res.json())
   // }
 
-  addDuties(sn,name,parent_id,company_id){
+  addDuties(sn,name,parentId,companyId){
     let body = "sn=" + sn+"&name="+name+
-      "&parent_id=" + parent_id+"&company_id="+company_id;
-    return this.http.post('http://test2.cn/duties',body,{headers:this.headers})
+      "&parentId=" + parentId+"&companyId="+companyId;
+    return this.http.post('http://t.api.jiaab.com/duties',body,{headers:this.headers})
 
   }
 
-  editDuties(id,sn,name,parent_id,company_id){
+  editDuties(id,sn,name,parentId,companyId){
     let body = "sn=" + sn+"&name="+name+
-      "&parent_id=" + parent_id+"&company_id="+company_id;
-    return this.http.put('http://test2.cn/duties/'+id,body,{headers:this.headers})
+      "&parentId=" + parentId+"&companyId="+companyId;
+    return this.http.put('http://t.api.jiaab.com/duties/'+id,body,{headers:this.headers})
   }
 
   delDuties(id){
-    return this.http.delete('http://test2.cn/duties/'+id,{headers:this.headers})
+    return this.http.delete('http://t.api.jiaab.com/duties/'+id,{headers:this.headers})
   }
 
 }

@@ -10,24 +10,24 @@ export class MenuServiceService {
   ) { }
 
   getMenuList(){
-   return this.http.get('http://test2.cn/menu')
+   return this.http.get('http://t.api.jiaab.com/menu')
      .toPromise()
      .then(res =>res.json())
   }
-  addMenuList(sn,name,url,parent_id){
+  addMenuList(sn,name,url,parentId){
     let body = "sn=" + sn+"&name="+name+
-      "&url=" + url+"&parent_id="+parent_id;
-    return this.http.post('http://test2.cn/menus',body,{headers:this.headers})
+      "&url=" + url+"&parentId="+parentId;
+    return this.http.post('http://t.api.jiaab.com/menus',body,{headers:this.headers})
 
   }
 
-  editMenuList(id,sn,name,url,parent_id){
+  editMenuList(id,sn,name,url,parentId){
     let body = "sn=" + sn+"&name="+name+
-      "&url=" + url+"&parent_id="+parent_id;
-    return this.http.put('http://test2.cn/menus/'+id,body,{headers:this.headers})
+      "&url=" + url+"&parentId="+parentId;
+    return this.http.put('http://t.api.jiaab.com/menus/'+id,body,{headers:this.headers})
   }
 
   delMenuList(id){
-    return this.http.delete('http://test2.cn/menus/'+id,{headers:this.headers})
+    return this.http.delete('http://t.api.jiaab.com/menus/'+id,{headers:this.headers})
   }
 }

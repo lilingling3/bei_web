@@ -77,7 +77,7 @@ $(function(){
   function changeBread(){
     $nav_a=$("li.active>a.my-a");
 
-    var bread_text="";
+    var bread_text="首页/";
     for(var i=0;i<$nav_a.length;i++){
 
       //console.log("$nav_a=");

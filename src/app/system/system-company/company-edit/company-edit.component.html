@@ -3,7 +3,7 @@
 
   <form #companyForm="ngForm" (ngSubmit)="submitForm()">
     name: <input type="text" value="{{company.name}}" [(ngModel)]="company.name" name="name"> <br>
-    full_name:<input type="text" value="{{company.full_name}}" [(ngModel)]="company.full_name" name="full_name">  <br>
+    fullName:<input type="text" value="{{company.full_name}}" [(ngModel)]="company.full_name" name="full_name">  <br>
     type:<input type="text" value="{{company.type}}" [(ngModel)]="company.type" name="type">  <br>
     code:<input type="text" value="{{company.code}}" [(ngModel)]="company.code" name="code">  <br>
     contacts:<input type="text" value="{{company.contacts}}" [(ngModel)]="company.contacts" name="contacts">  <br>

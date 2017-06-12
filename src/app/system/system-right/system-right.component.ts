@@ -29,36 +29,10 @@ export class SystemRightComponent implements OnInit {
         })
   }
 
-
-  update(id:number){
-    this.router.navigate(['workentry/system/right/edit',id])
-  }
-
-  goToEdit(){
-    this.router.navigate(['workentry/system/right/edit'])
-  }
-
-  delItem(id:number){
-    let indexRight = this.rights.findIndex(function (value, index) {
-      return value.id == id;
-    });
-
-    this.right = this.rights[indexRight];
-
-    if(confirm(`确定删除id为${id}吗`)){
-      this.rightServiceService.delRights(id)
-        .subscribe(res =>{
-          console.log(res.json());
-          this.rights.splice(indexRight,1);
-        })
-    }
-
-  }
-
   showItem(id:number){
-    this.router.navigate(['workentry/system/right/show',id])
+    sessionStorage.removeItem('dutyId');
+    this.router.navigate(['workentry/system/right/show',id]);
+    sessionStorage.setItem('dutyId',JSON.stringify(id));
   }
-
-
 
 }

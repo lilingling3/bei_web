@@ -1,15 +1,24 @@
 <div class="edit">
   <div class="edit-text">{{title}}</div>
 
-  <!--<form #companyForm="ngForm" (ngSubmit)="submitForm()">-->
-    <!--name: <input type="text" value="{{company.name}}" [(ngModel)]="company.name" name="name"> <br>-->
-    <!--full_name:<input type="text" value="{{company.full_name}}" [(ngModel)]="company.full_name" name="full_name">  <br>-->
-    <!--type:<input type="text" value="{{company.type}}" [(ngModel)]="company.type" name="type">  <br>-->
-    <!--contacts:<input type="text" value="{{company.contacts}}" [(ngModel)]="company.contacts" name="contacts">  <br>-->
-    <!--tel: <input type="text" value="{{company.tel}}" [(ngModel)]="company.tel" name="tel">  <br>-->
-    <!--postcode: <input type="text" value="{{company.postcode}}" [(ngModel)]="company.postcode" name="postcode">  <br>-->
-    <!--address: <input type="text" value="{{company.address}}" [(ngModel)]="company.address" name="address">  <br>-->
-    <!--<button class="btn btn-default" type="submit">保存</button>-->
-  <!--</form>-->
+  <form #companyForm="ngForm" (ngSubmit)="submitForm()">
+    <!--dutyId:  <input type="text" value="{{right.dutyId}}" [(ngModel)]="right.dutyId" name="dutyId">-->
+    <br>
+    <br>
+    menuId:
+    <select  value="" id="menuPrev">
+      <option value="-1">一级菜单</option>
+    </select>
+    <select name="menuId" id="menSub" [(ngModel)]="right.menuId" value="{{right.menuId}}">
+      <option value="-1">二级菜单</option>
+    </select>
+    <br>
+    <br>
+    action:
+    <input type="checkbox" value="46" name="action" [(ngModel)]="right.action">新增
+    <input type="checkbox" value="47" name="action" [(ngModel)]="right.action">删除
+    <input type="checkbox" value="48" name="action" [(ngModel)]="right.action">编辑
+    <button class="btn btn-default" type="submit">保存</button>
+  </form>
 
 </div>

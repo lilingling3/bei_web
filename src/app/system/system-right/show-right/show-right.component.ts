@@ -47,8 +47,8 @@ export class ShowRightComponent implements OnInit {
               return value.dutyId == showId;
             });
               this.roles = this.right.dutyMenu;
-
-              //console.log(this.roles);
+              console.log('this roles');
+              console.log(this.roles);
 
               this.roles? this.hidden = false:this.hidden = true;
               console.log(this.hidden);
@@ -57,7 +57,8 @@ export class ShowRightComponent implements OnInit {
   }
 
   goBack(){
-    this.location.back()
+    //this.location.back()
+    this.router.navigate(['workentry/system/right'])
   }
 
   // 删除

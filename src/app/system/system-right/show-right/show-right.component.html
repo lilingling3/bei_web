@@ -13,7 +13,7 @@
         <th>dutyId</th>
         <th>menuName</th>
         <th>menuId</th>
-        <th>parentId</th>
+        <!--<th>parentId</th>-->
         <th>action</th>
         <th>操作</th>
       </tr>
@@ -24,14 +24,21 @@
         <td>{{role.dutyId}}</td>
         <td>{{role.menuName}}</td>
         <td>{{role.menuId}}</td>
-        <td>{{role.parentId}}</td>
+        <!--<td>{{role.parentId}}</td>-->
         <td>
-          <span *ngFor="let action of role.action">
+          <label *ngFor="let action of role.action">
+            {{action}}
             <span *ngIf="action == ''">没有action</span>
-            <span *ngIf="action == 46">新建</span>
-            <span *ngIf="action == 47">删除</span>
-            <span *ngIf="action == 48">编辑</span>
-          </span>
+            <!--{{action.text}}-->
+            <!--<span *ngIf="action.value == 46">新建</span>
+            <span *ngIf="action.value == 47">删除</span>
+            <span *ngIf="action.value == 48">编辑</span>-->
+            <!--<span *ng-else></span>-->
+          <!--<input type="checkbox"
+            [checked]="action.checked" [value]="action.value"/>
+           <span> {{action.text}}</span>-->
+           <!--<span>{{action.text}}</span>-->
+          </label>
         </td>
         <td>
            <a href="javascript:void(0);"  (click)="delItem(role.dutyMenuId)">删除</a>

@@ -3,21 +3,33 @@
 
   <form #companyForm="ngForm" (ngSubmit)="submitForm()">
     <!--dutyId:  <input type="text" value="{{right.dutyId}}" [(ngModel)]="right.dutyId" name="dutyId">-->
-    <br>
-    <br>
-    menuId:
+   <label> menuId:</label>
+    <div class="form-group">
     <select  value="" id="menuPrev">
       <option value="-1">一级菜单</option>
     </select>
-    <select name="menuId" id="menSub" [(ngModel)]="right.menuId" value="{{right.menuId}}">
+    <select name="menuId" id="menSub" name="menuId" [(ngModel)]="right.menuId">
       <option value="-1">二级菜单</option>
     </select>
-    <br>
-    <br>
-    action:
-    <input type="checkbox" value="46" name="action" [(ngModel)]="right.action">新增
-    <input type="checkbox" value="47" name="action" [(ngModel)]="right.action">删除
-    <input type="checkbox" value="48" name="action" [(ngModel)]="right.action">编辑
+    </div>
+    <div class="form-group">
+      <label>action:</label>
+      <div class="checkbox" >
+        <!--<label *ngFor="let item of actionList" class="checkbox-inline">
+          <input type="checkbox" (click)="selectCheckbox($event.target.checked,item)" name="action"/>
+          <span *ngIf="item == 46">新建</span>
+          <span *ngIf="item == 47">删除</span>
+          <span *ngIf="item == 48">编辑</span>
+        </label>-->
+
+        <label *ngFor="let item of right.action" >
+          <input type="checkbox" name="action"
+            [checked]="item.checked" [value]="item.value"
+            (change)="onChange($event,item)"/>
+           <span> {{item.text}}</span>
+          </label>
+      </div>
+    </div>
     <button class="btn btn-default" type="submit">保存</button>
   </form>
 

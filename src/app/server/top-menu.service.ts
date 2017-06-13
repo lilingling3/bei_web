@@ -10,7 +10,7 @@ export class TopMenuService {
   // 获取导航栏列表
   public getNavList(){
     //return this.http.get("http://test2.cn/v1/level/"+id);
-    return this.http.get("https://www.easy-mock.com/mock/59128ab8acb959185b0ccece/admin/nav");
+    return this.http.get("http://t.api.jiaab.com/menu");
   }
 }
 

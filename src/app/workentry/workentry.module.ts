@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
+import { SharedCommonModule } from '../shared/shared.module';
 import { RouterModule} from '@angular/router';
 import { ModalModule } from 'ng2-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +9,7 @@ import { DefaultComponent } from '../default/dufault.component';
 import { workentryRoutes } from './workentry.routes';
 @NgModule({
   imports: [
-    SharedModule,
+    SharedCommonModule,
     FormsModule,
   //  ModalModule.forRoot(),
     RouterModule.forChild(workentryRoutes)

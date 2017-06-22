@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {  Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedCommonModule } from '../shared/shared.module';
 import { PaginationModule } from 'ng2-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -24,7 +24,7 @@ import { MenuServiceService } from './system-menu/service/menu-service.service';
 import { RightServiceService } from './system-right/service/right-service.service';
 @NgModule({
   imports: [
-    SharedModule,
+    SharedCommonModule,
      FormsModule,
     CommonModule,
     PaginationModule.forRoot(),

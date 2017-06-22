@@ -1,0 +1,176 @@
+<!-- 按钮-->
+<div>
+<button pButton type="button" label="点击"></button>
+</div>
+<!-- 上传图片 -->
+<label>照片：</label>
+<div>
+    <!--上传组件 -->
+     <p-fileUpload
+         name="uploadPhoto[]"
+         url="http://localhost:3333/api/upload"
+         (onUpload)="onPhotoUpload($event)" accept="image/*" maxFileSize="1000000"
+          chooseLabel='选择' uploadLabel='下载' cancelLabel='取消'>
+         <ng-template pTemplate type="content">
+             <ul *ngIf="photoFiles.length">
+                 <li *ngFor="let file of photoFiles">
+                     {{file.name}} - {{file.size}} bytes
+                 </li>
+             </ul>
+         </ng-template>
+     </p-fileUpload>
+</div>
+<!--
+    url 属性作为上传目标，并在后端标识文件名称
+-->
+<!--如果图片上传成功，显示图片 -->
+<div *ngIf="demo.photo">
+    <img src="{{photoUrl}}">
+</div>
+<br>
+<div>
+    <p-calendar [(ngModel)]="dateValue" [locale]="cn"></p-calendar>
+</div>
+<br>
+<!-- 分页-->
+<div>
+    <p-paginator rows="10" totalRecords="100" [rowsPerPageOptions]="[10,20,30]" pageLinkSize="3"  (onPageChange)="paginate($event)"></p-paginator>
+    <!--
+        rows   一页有多少数据
+        totalRecords 总共有多少数据
+       rowsPerPageOptions 控制 rows
+       pageLinkSize  显示多少按钮
+    -->
+</div>
+<!-- 树形 表格-->
+<p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedFile"
+    (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" [style]="{'margin-top':'50px'}">
+   <p-header>List of Files</p-header>
+    <!--<p-footer>Choose from the list.</p-footer>-->
+     <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+</p-treeTable>
+
+<p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedFile" [contextMenu]="cm">
+    <p-header>Context Menu</p-header>
+    <p-column field="name" header="Name"></p-column>
+    <p-column field="size" header="Size"></p-column>
+    <p-column field="type" header="Type"></p-column>
+     <!--<p:column>-->
+        <ng-template let-col let-node="rowData" pTemplate="header">
+            <button type="button" pButton label="Refresh"></button>
+        </ng-template>
+        <!--</p:column>-->
+</p-treeTable>
+
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+
+<p-confirmDialog width="425"></p-confirmDialog>
+
+<button type="button" (click)="confirm1()" pButton icon="fa-check" label="确认"></button>
+
+<button type="button" (click)="confirm2()" pButton icon="fa-trash" label="删除"></button>
+<!--<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+
+<button type="text" (click)="confirm1()" pButton icon="fa-check" label="Confirm"></button>-->
+
+<p-menu [model]="itemMenus"></p-menu>
+
+<!--<p-schedule [events]="events"></p-schedule>-->
+<!--
+    全局改变 右键编辑栏 [global]="true"
+-->
+
+<p-contextMenu  [model]="contextMenuItems" [target]="img"></p-contextMenu>
+<!-- 
+    给图片添加 右键功能
+-->
+<img #img src="../../favicon.ico" alt="Logo">
+
+<p-tabMenu [model]="tabMenuItems"></p-tabMenu>
+
+<p-chart type="polarArea" [data]="data" [options]="options"></p-chart>
+<!--
+    type :line bar doughnut pie polarArea radar
+-->
+<button type="button" pButton (click)="update($event)"></button>
+<!--<p-messages [(value)]="msgs"></p-messages>-->
+
+<div>
+    <button type="button" pButton (click)="showSuccess()" label="Success" class="ui-button-success"></button>
+    <button type="button" pButton (click)="showInfo()" label="Info" class="ui-button-info"></button>
+    <button type="button" pButton (click)="showWarn()" label="Warn" class="ui-button-warning"></button>
+    <button type="button" pButton (click)="showError()" label="Error" class="ui-button-danger"></button>
+    <button type="button" pButton (click)="showMultiple()" label="Multiple"></button>
+    <button type="button" pButton (click)="clear()" icon="fa-close" style="float:right" label="Clear"></button>
+</div>
+
+<!--
+     sticky="sticky" 一直 在 否则会消失
+-->
+<p-growl [(value)]="msgs"  sticky="sticky"></p-growl>
+
+<p id="test">
+    kkk
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>

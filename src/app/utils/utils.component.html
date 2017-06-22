@@ -1,0 +1,43 @@
+<div id="directive">
+
+        <h1 beauty>自定义属性指令</h1>
+        <br>
+        <h1 [beauty-input]="'red'">指定绑定输入</h1>
+        <br>
+        <h1 [myHighlight]="'blue'">自定义指令响应用户操作</h1>
+        <br>
+        <h1>访问组件内容 渲染组件内容</h1>
+
+        <!-- false 显示
+        -->
+        <p *myUnless="boolValue">
+            false
+        </p>
+        <!--true 显示-->
+        <p *myUnless="!boolValue">
+            true
+        </p>
+
+      <!--<div class="form-group">
+                <label for="startDate">{date.startDate}</label>
+
+                <input
+                dateRangePicker
+                [dateRangePickerOptions]="option"
+                (selected)="dateSelected($event)"
+                type="text"
+                class="form-control"/>
+     </div>-->
+
+
+</div>
+<br>
+<div id="pipe">
+    <p class="{{isTrue | boolean }}">测试管道</p>
+    <!--<input type="checkbox" name="isTrue" value="isTrue" id="isTrue"
+     (change)="onChange($event)">-->
+     <!-- 单个值 双向数据绑定-->
+     <input type="checkbox" [checked]="isTrue" name="isTrue"  id="isTrue"(change)="onChange()" >
+     <label for="isTrue">{{isTrue}}</label>
+</div>
+

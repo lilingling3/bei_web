@@ -3,7 +3,7 @@
  */
 import { NgModule } from '@angular/core';
 import {  Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedCommonModule } from '../shared/shared.module';
 import { PaginationModule } from 'ng2-bootstrap';
 import { StationsComponent } from './stations.component';
 import { stationsRoutes } from './stations.routes';
@@ -15,7 +15,7 @@ import { StationDetailComponent } from './station-manage/station-detail/station-
 import { StationService } from '../stations/service/station.service';
 @NgModule({
   imports: [
-    SharedModule,
+    SharedCommonModule,
     PaginationModule.forRoot(),
     RouterModule.forChild(stationsRoutes)
   ],

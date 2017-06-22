@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /*import { ChartsModule } from 'ng2-charts/ng2-charts';
-import 'chart.js/dist/Chart.js'*/;
-
-
+import 'chart.js/dist/Chart.js'*/
+declare var AMap;
 @Component({
   selector: 'app-stations-map',
   templateUrl: './stations-map.component.html',

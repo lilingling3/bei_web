@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TranslateModule } from 'ng2-translate';
 import { ModalModule } from 'ng2-bootstrap';
 import { PaginationModule } from 'ng2-bootstrap';
+// import {ButtonModule} from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { PaginationModule } from 'ng2-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    // ButtonModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot()
   ],
@@ -24,4 +26,4 @@ import { PaginationModule } from 'ng2-bootstrap';
   ]
 })
 
-export class SharedModule { }
+export class SharedCommonModule { }

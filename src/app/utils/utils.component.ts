@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilsComponent implements OnInit {
   isTrue:boolean = true;
+  testArry = ['46','47'];
+  isChecked = true;
   /**
    * 当前选中的时间
    */
@@ -44,7 +46,11 @@ export class UtilsComponent implements OnInit {
   onChange(event){
     //console.log(event.target.value)
      this.isTrue = !this.isTrue;
-     console.log(this.isTrue)
+     console.log(this.isTrue);
+     this.isChecked = !this.isChecked
+  }
+  onSubmit(val){
+    console.log(val.target.action)
   }
 
 }

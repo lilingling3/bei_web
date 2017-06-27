@@ -1,0 +1,190 @@
+<div class="container row">
+  <h1>页面元素</h1>
+  <hr>
+   <h3>弹窗</h3>
+  <button class="btn btn-primary" (click)="alert()">Alert</button>
+  <button class="btn btn-info" (click)="confirm()">Confirm</button>
+  <button class="btn btn-warning" (click)="msg()">Msg</button>
+  <button class="layui-btn layui-btn-normal" (click)="load()">loading</button>
+
+  <br>
+  <h2>按钮</h2>
+  <button class="layui-btn">一个标准的按钮</button>
+  <a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a>
+ <!--组合按钮 -->
+  <div class="layui-btn-group">
+      <button class="layui-btn layui-btn-normal layui-btn-small">
+        <i class="layui-icon">&#xe654;</i>
+      </button>
+      <button class="layui-btn layui-btn-normal layui-btn-small">
+        <i class="layui-icon">&#xe642;</i>
+      </button>
+      <button class="layui-btn layui-btn-normal layui-btn-small">
+        <i class="layui-icon">&#xe640;</i>
+      </button>
+      <button class="layui-btn layui-btn-normal layui-btn-small">
+        <i class="layui-icon">&#xe602;</i>
+      </button>
+      <button class="layui-btn">
+        <i class="layui-icon">&#xe608;</i> 添加
+      </button>
+  </div>
+  <hr>
+  <h3>表单</h3>
+
+  <form class="layui-form" action="">
+  <div class="layui-form-item">
+    <label class="layui-form-label">输入框</label>
+    <div class="layui-input-block">
+      <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">密码框</label>
+    <div class="layui-input-inline">
+      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">选择框</label>
+    <div class="layui-input-block">
+      <select name="city" lay-verify="required">
+        <option value=""></option>
+        <option value="0">北京</option>
+        <option value="1">上海</option>
+        <option value="2">广州</option>
+        <option value="3">深圳</option>
+        <option value="4">杭州</option>
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">复选框</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="like[write]" title="写作">
+      <input type="checkbox" name="like[read]" title="阅读" checked>
+      <input type="checkbox" name="like[dai]" title="发呆">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">开关</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="switch" lay-skin="switch">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">单选框</label>
+    <div class="layui-input-block">
+      <input type="radio" name="sex" value="男" title="男">
+      <input type="radio" name="sex" value="女" title="女" checked>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">文本域</label>
+    <div class="layui-input-block">
+      <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+
+<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+
+<select name="city" lay-verify="">
+  <!--设置值-->
+  <option value="">请选择一个城市</option>
+  <option value="010">北京</option>
+  <option value="021">上海</option>
+  <option value="0571">杭州</option>
+</select>
+<select name="city" lay-verify="">
+  <!--默认选中-->
+  <option value="010">北京</option>
+  <option value="021" disabled>上海（禁用效果）</option>
+  <option value="0571" selected>杭州</option>
+</select>
+<!--select分组-->
+<select name="quiz">
+  <optgroup label="城市记忆">
+    <option value="你工作的第一个城市">你工作的第一个城市？</option>
+  </optgroup>
+  <optgroup label="学生时代">
+    <option value="你的工号">你的工号？</option>
+    <option value="你最喜欢的老师">你最喜欢的老师？</option>
+  </optgroup>
+</select>
+<select name="city" lay-verify="" lay-search>
+  <option value="010">layer</option>
+  <option value="021">form</option>
+  <option value="0571" selected>layim</option>
+</select>
+默认风格：
+<input type="checkbox" name="" title="写作" checked>
+<input type="checkbox" name="" title="发呆">
+<input type="checkbox" name="" title="禁用" disabled>
+
+原始风格：
+<input type="checkbox" name="" title="写作" lay-skin="primary" checked>
+<input type="checkbox" name="" title="发呆" lay-skin="primary">
+<input type="checkbox" name="" title="禁用" lay-skin="primary" disabled>
+
+<input type="radio" name="sex" value="nan" title="男">
+<input type="radio" name="sex" value="nv" title="女" checked>
+<input type="radio" name="sex" value="" title="中性" disabled>
+<br>
+  <br>
+  <h3>表格</h3>
+  <table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>昵称</th>
+      <th>加入时间</th>
+      <th>签名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>贤心</td>
+      <td>2016-11-29</td>
+      <td>人生就像是一场修行</td>
+    </tr>
+    <tr>
+      <td>贤心</td>
+      <td>2016-11-29</td>
+      <td>人生就像是一场修行</td>
+    </tr>
+  </tbody>
+
+
+  <h1>分页</h1>
+  <br>
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+        <legend>分页完整功能</legend>
+  </fieldset>
+
+   <div id="demo7"></div>
+
+   <h1>文件上传</h1>
+   <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+      <legend>演示上传</legend>
+  </fieldset>
+
+  <div class="site-demo-upload">
+    <img id="LAY_demo_upload" src="assets/images/car.png" width="200px" height="200px">
+    <div class="site-demo-upbar">
+      <input type="file" name="file" class="layui-upload-file" id="test">
+    </div>
+</div>
+
+<div>

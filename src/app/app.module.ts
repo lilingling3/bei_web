@@ -10,7 +10,6 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {HashLocationStrategy,LocationStrategy} from '@angular/common';
 
 import { HttpModule, JsonpModule, Http} from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { appRoutes } from './app.routes';
@@ -36,6 +35,7 @@ import { HttpService } from './server/common.service';
 import { AppService } from './server/app.service';
 import { TopMenuService } from './server/top-menu.service';
 import { commonsInstances} from './models/Acommons';
+import { LayerComponent } from './layer/layer.component';
 // // 工具类
 // import {OneDirective } from './utils/directive/beauty.directive';
 // import {BeautyDirective } from './utils/directive/color.directive';
@@ -50,6 +50,7 @@ import { commonsInstances} from './models/Acommons';
     ZtreeDemoComponent,
     PrimengComponent,
     TestHttpComponent,
+    LayerComponent,
     // UtilsComponent,
     // OneDirective,
     // BeautyDirective,
@@ -94,7 +95,7 @@ import { commonsInstances} from './models/Acommons';
     PrimengService,
     ConfirmationService,
     TestHttpService,
-    HttpService,
+    // HttpService,
     {provide: LocationStrategy,useClass: HashLocationStrategy}
 ],
   bootstrap: [AppComponent]

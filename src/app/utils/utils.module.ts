@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UtilsComponent } from './utils.component';
 
@@ -11,7 +12,8 @@ import {BooleanPipe } from './pipe/boolean-pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   // 组件 指定 管道
   declarations: [

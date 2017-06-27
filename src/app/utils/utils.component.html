@@ -40,4 +40,32 @@
      <input type="checkbox" [checked]="isTrue" name="isTrue"  id="isTrue"(change)="onChange()" >
      <label for="isTrue">{{isTrue}}</label>
 </div>
+<br>
+  <h1>checkbox 双向数据绑定</h1>
+   <form  #loginForm="ngForm" (ngSubmit)="onSubmit($event)">
+        <div id="checkbox" *ngFor="let item of testArry">
+                <ul [ngSwitch]='item'>
+                    <li *ngSwitchCase="'46'" class='text-success'>
+                        <input type="checkbox" checked="isChecked" name="action"
+                        (change)="onChange()" value="46"  >
+                        <label>新建 </label>
+                    </li>
+                    <li *ngSwitchCase="'47'" class='text-secondary'>
+                        <input type="checkbox" checked="isChecked"  name="action"  (change)="onChange()"
+                        value="47"  >
+                        <label>删除</label>
+                    </li>
+                    <li *ngSwitchCase="'48'" class='text-primary'>
+                        <input type="checkbox" checked="isChecked" name="action"  (change)="onChange()"
+                        value="48"  >
+                        <label>编辑</label>
+                    </li>
+                </ul>
+        </div>
+        <button type="submit">提交</button>
+  </form>
+    <!--<input type="checkbox"  name="item"  (change)="onChange()" value="">
+     <label>{{isTrue}}</label>-->
+<!--</div>-->
+
 

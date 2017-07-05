@@ -6,6 +6,9 @@ import { PrimengComponent } from './primeng/primeng.component'
 import { TestHttpComponent } from './test-http/test-http.component';
 import { UtilsComponent } from './utils/utils.component';
 
+import {AuthGuard} from './demo-guard/auth.guard';
+import { DemoGuardComponent } from './demo-guard/demo-guard.component';
+
 import { LayerComponent } from './layer/layer.component';
 export const appRoutes = [
 	{
@@ -23,9 +26,15 @@ export const appRoutes = [
 		component: LoginComponent
 	},
 	{
-		path: 'tree',
-		component: ZtreeDemoComponent
+		path: 'guard',
+		component: DemoGuardComponent
 	},
+	{
+		path: 'tree',
+		component: ZtreeDemoComponent,
+		canActivate: [AuthGuard],
+	},
+
 	{
 		path: 'primeng',
 		component: PrimengComponent

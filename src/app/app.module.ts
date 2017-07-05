@@ -22,6 +22,9 @@ import { AppErrorComponent } from './error/app.error.component';
 import { ZtreeDemoComponent } from './z-tree/z-tree.component';
 import { TestHttpComponent } from './test-http/test-http.component';
 import { UtilsComponent } from './utils/utils.component';
+
+import {AuthGuard} from './demo-guard/auth.guard';
+import { DemoGuardComponent } from './demo-guard/demo-guard.component';
 // UI 插件加载
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ButtonModule,FileUploadModule,CalendarModule,PaginatorModule,TreeTableModule,TreeNode,SharedModule,Header,
@@ -51,6 +54,7 @@ import { LayerComponent } from './layer/layer.component';
     PrimengComponent,
     TestHttpComponent,
     LayerComponent,
+    DemoGuardComponent,
     // UtilsComponent,
     // OneDirective,
     // BeautyDirective,
@@ -95,6 +99,7 @@ import { LayerComponent } from './layer/layer.component';
     PrimengService,
     ConfirmationService,
     TestHttpService,
+    AuthGuard,
     // HttpService,
     {provide: LocationStrategy,useClass: HashLocationStrategy}
 ],

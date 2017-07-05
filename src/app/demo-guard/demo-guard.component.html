@@ -1,0 +1,27 @@
+<p>账号是123，密码也是123</p>
+
+<p>
+
+  <input type="text" #account>
+
+  <input type="password" #pwd>
+
+  <button (click)="onSubmit(account.value, pwd.value)">登录</button>
+
+</p>
+<a routerLink="/tree">这是个树结构链接，登录之后点击跳转才能查看</a>
+
+<br>
+
+<div class="box">
+
+  <h4> CanDeactivateGuard</h4>
+
+  <p>
+
+    <input type="text" [(ngModel)]="name"/> (尝试修改表单的内容，然后点击其他页面)
+
+  </p>
+
+</div>
+
